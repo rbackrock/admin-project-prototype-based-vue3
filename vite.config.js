@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import 'dotenv/config'
 
 const REQUEST_BASE = 'http://localhost:8100'
 
