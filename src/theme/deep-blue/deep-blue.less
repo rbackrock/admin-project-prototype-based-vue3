@@ -1,0 +1,409 @@
+/**
+  * deep blue theme
+  * @author yhuan
+  **/
+
+@import '~ant-design-vue/lib/style/color/colorPalette.less';
+
+// customize
+@customize-body-background: #031028;
+@customize-primary-text-color: #42ccfa;
+@customize-text-color: #00a5da;
+@customize-border-color: #00a8de;
+@customize-hover-theme-color: rgba(54, 153, 229, 0.3);
+@customize-hover-bg-color: rgba(24, 144, 255, 0.8);
+@customize-hover-text-color: #fff;
+@customize-active-bg-color: rgba(24, 144, 255, 0.8);
+@customize-active-text-color: #fff;
+
+// colors
+@primary-color: @customize-primary-text-color;
+@background-color-base: transparent;
+@background-color-light: transparent;
+@disabled-color: rgba(204, 204, 204, 0.4);
+@disabled-bg: @background-color-base;
+@body-background: @customize-body-background;
+@component-background: @customize-body-background;
+@text-color: @customize-text-color;
+@text-color-inverse: #fff;
+@text-color-secondary: fade(@customize-text-color, 75%);
+@text-color-secondary-dark: fade(@customize-text-color, 75%);
+@text-color-dark: @customize-text-color;
+@icon-color-hover: @customize-text-color;
+@border-color-base: @customize-border-color;
+@border-color-split: @customize-border-color;
+@border-color-inverse: @customize-border-color;
+@heading-color: @customize-border-color;
+@item-hover-bg: @customize-hover-bg-color;
+@item-active-bg: @customize-active-bg-color;
+
+// shadow
+@shadow-color: rgba(24,144,255, 0.6);
+
+// buttons
+@btn-primary-bg: rgba(24, 144, 255, 0.6);
+.ant-btn-primary {
+  border-color: @customize-border-color;
+}
+.ant-btn-primary:hover, .ant-btn-primary:focus {
+  border-color: #1890ff;
+  background: @customize-hover-bg-color;
+  color: @customize-hover-text-color;
+}
+
+@btn-default-color: @text-color;
+@btn-default-bg: transparent;
+
+// divider
+@divider-color: @customize-border-color;
+
+// layout
+@layout-body-background: @customize-body-background;
+@layout-header-background: @customize-body-background;
+@layout-footer-background: @customize-body-background;
+@layout-sider-background: @customize-body-background;
+@layout-trigger-color: @customize-primary-text-color;
+@layout-trigger-background: @customize-body-background;
+
+@layout-sider-background-light: @customize-body-background;
+@layout-trigger-color-light: @customize-primary-text-color;
+@layout-trigger-background-light: @customize-body-background;
+
+// Breadcrumb
+@dropdown-menu-bg: @customize-body-background;
+@dropdown-menu-submenu-disabled-bg: @disabled-bg;
+
+.@{dropdown-prefix-cls} {
+  &-menu {
+    &-item,
+    &-submenu-title {
+      > a {
+        &:hover {
+          color: #7fe2fc;
+        }
+      }
+
+      &-disabled {
+        color: rgba(204, 204, 204, 0.3);;
+
+        &:hover {
+          color: rgba(204, 204, 204, 0.3);;
+        }
+      }
+    }
+  }
+}
+
+// menu
+@menu-highlight-color: @customize-active-text-color;
+@menu-dark-color: @text-color-secondary;
+@menu-dark-bg: @layout-header-background;
+@menu-dark-arrow-color: @customize-text-color;
+@menu-dark-submenu-bg: #000c17;
+@menu-dark-highlight-color: @customize-text-color;
+@menu-dark-item-active-bg: @customize-hover-theme-color;
+@menu-dark-selected-item-icon-color: @customize-text-color;
+@menu-dark-selected-item-text-color: @customize-text-color;
+@menu-dark-item-hover-bg: transparent;
+@menu-item-active-bg: @customize-hover-bg-color;
+// menu border
+.ant-menu.ant-menu-root.ant-menu-inline.ant-menu-light {
+  min-height: 100%;
+}
+// menu 收缩按钮区域 border
+.mix-layout-container.base-container.side-nav-container.bottom-link {
+  border-right: 1px solid @customize-border-color;
+}
+
+.ant-layout-sider-children .ant-menu.ant-menu-inline-collapsed {
+  min-height: 100%;
+}
+
+.mix-layout-container .base-container .side-nav-container .bottom-link {
+  border-right: 1px solid @customize-border-color;
+}
+
+.side-menu-main-layout-container .side-nav-container .bottom-link {
+  border-right: 1px solid @customize-border-color;
+}
+
+.side-menu-main-layout-container .side-nav-container .logo {
+  border-right: 1px solid @customize-border-color;
+}
+
+.ant-layout.mix-layout-container.main-layout {
+  .ant-menu.ant-menu-root.ant-menu-inline.ant-menu-light {
+    border-top: 1px solid @customize-border-color;
+  }
+}
+
+.anticon.anticon-menu-fold.trigger {
+  color: @customize-text-color !important;
+}
+
+.side-menu-main-layout-container .header-container,
+.side-menu-main-layout-container .header-container .header-wrapper {
+  background: transparent !important;
+}
+
+// Pagination
+@pagination-item-bg-active: @customize-active-bg-color;
+
+.ant-pagination-item-active a {
+  color: @customize-active-text-color;
+}
+
+@pagination-item-disabled-color-active: @disabled-color;
+
+// Steps
+@steps-nav-arrow-color: fade(@customize-body-background, 25%);
+@process-icon-color: rgba(24, 144, 255, 0.6);
+
+// input
+@input-placeholder-color: hsv(0, 0, 60%);
+@input-addon-bg: transparent;
+
+// Select
+@select-multiple-item-disabled-color: @disabled-color;
+@select-item-active-bg: @item-active-bg;
+
+.@{select-prefix-cls} {
+  &-item {
+    &-option {
+      &-selected:not(&-disabled) {
+        color: #fff;
+        background-color: @customize-active-bg-color;
+      }
+    }
+  }
+}
+
+// Cascader
+@cascader-item-selected-bg: @item-active-bg;
+
+// Checkbox - 默认样式是个 less 函数，所以只能硬写样式
+@checkbox-check-bg: transparent;
+@checkbox-check-color: @customize-primary-text-color;
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: transparent;
+}
+
+.ant-checkbox-disabled .ant-checkbox-inner {
+  background-color: @disabled-color;
+}
+
+// Calendar
+.ant-calendar-selected-day .ant-calendar-date {
+  background: @item-hover-bg;
+  color: #fff;
+}
+
+.ant-calendar-footer-extra.ant-calendar-range-quick-selector .ant-tag-blue {
+  background: transparent;
+  border-color: @customize-border-color;
+}
+
+// Calendar-month
+.ant-calendar-month-panel-selected-cell .ant-calendar-month-panel-month {
+  background: @item-hover-bg;
+}
+
+.ant-calendar-month-panel-selected-cell .ant-calendar-month-panel-month:hover {
+  background: @item-hover-bg;
+}
+
+// Calendar-range
+.ant-calendar-range .ant-calendar-selected-start-date .ant-calendar-date, .ant-calendar-range .ant-calendar-selected-end-date .ant-calendar-date {
+  background: @item-hover-bg;
+}
+
+// Calendar-week
+.ant-calendar-week-number .ant-calendar-body tr.ant-calendar-active-week {
+  background: @customize-hover-theme-color;
+}
+
+.ant-calendar-week-number .ant-calendar-body tr:hover {
+  background: @customize-hover-theme-color;
+}
+
+// Calendar-picker
+.ant-calendar-picker-icon {
+  color: @customize-primary-text-color;
+}
+
+// Tag
+.ant-tag-checkable-checked {
+  background-color: @item-hover-bg;
+}
+
+// Mentions
+.ant-mentions > textarea {
+  background: transparent;
+}
+
+// Radio buttons
+@radio-button-checked-bg: @customize-active-bg-color;
+@radio-dot-color: #fff;
+@radio-disabled-button-checked-bg: @customize-active-bg-color;
+@radio-disabled-button-checked-color: rgba(204, 204, 204, 0.8);
+
+// radio
+.ant-radio-inner::after {
+  background-color: @customize-primary-text-color;
+}
+
+.ant-radio-checked .ant-radio-inner {
+  border-color: @customize-primary-text-color;
+}
+
+.ant-radio-wrapper:hover .ant-radio, .ant-radio:hover .ant-radio-inner, .ant-radio-input:focus + .ant-radio-inner {
+  border-color: @customize-primary-text-color;
+}
+
+// radio-button
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+  border-color: @border-color-base;
+}
+
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):first-child {
+  border-color: @border-color-base;
+}
+
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled)::before {
+  background-color: @border-color-base;
+}
+
+// radio-group
+.ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+  color: #fff;
+  background: @customize-active-bg-color;
+  border-color: @border-color-base;
+}
+
+.ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover {
+  color: #fff;
+  background: @customize-active-bg-color;
+  border-color: @border-color-base;
+}
+
+// Select
+.ant-select-arrow {
+  color: @customize-primary-text-color;
+}
+
+// Slider - track - 已选的 rail - 未选的
+@slider-rail-background-color: @disabled-color;
+@slider-track-background-color: @customize-text-color;
+@slider-rail-background-color-hover: @customize-text-color;
+@slider-track-background-color-hover: @customize-text-color;
+
+// Time picker
+.ant-time-picker-icon .ant-time-picker-clock-icon, .ant-time-picker-clear .ant-time-picker-clock-icon {
+  color: @customize-primary-text-color;
+}
+
+// Tree
+@tree-node-selected-bg: @customize-active-bg-color;
+@tree-directory-selected-bg: @customize-active-bg-color;
+
+.ant-tree li .ant-tree-node-content-wrapper.ant-tree-node-selected {
+  color: #fff;
+}
+
+// Tree select
+.ant-select-tree li .ant-select-tree-node-content-wrapper.ant-select-tree-node-selected {
+  background: @customize-active-bg-color;
+  color: #fff;
+}
+
+.ant-select-tree li .ant-select-tree-node-content-wrapper:hover {
+  color: #fff;
+}
+
+.ant-select-tree-checkbox-checked .ant-select-tree-checkbox-inner {
+  background-color: transparent;
+}
+
+// Tree check
+.ant-tree-checkbox-checked .ant-tree-checkbox-inner {
+  background-color: transparent;
+}
+
+// Upload
+.ant-upload-list-item:hover .ant-upload-list-item-info {
+  color: #fff;
+}
+
+.ant-upload-list-item:hover .ant-upload-list-item-info .anticon.anticon-paper-clip {
+  color: #fff;
+}
+
+.ant-upload-list-item:hover .ant-upload-list-item-info .anticon.anticon-delete {
+  color: #fff;
+}
+
+// Avatar
+@avatar-bg: @customize-active-bg-color;
+@avatar-color: @customize-active-text-color;
+
+// Calendar
+.ant-fullcalendar-fullscreen .ant-fullcalendar-month-panel-selected-cell .ant-fullcalendar-month, .ant-fullcalendar-fullscreen .ant-fullcalendar-selected-day .ant-fullcalendar-date {
+  background: @customize-active-bg-color;
+}
+
+.ant-fullcalendar-fullscreen .ant-fullcalendar-month-panel-selected-cell .ant-fullcalendar-value, .ant-fullcalendar-fullscreen .ant-fullcalendar-selected-day .ant-fullcalendar-value {
+  color: @customize-active-text-color;
+}
+
+.ant-fullcalendar-fullscreen .ant-fullcalendar-month:hover, .ant-fullcalendar-fullscreen .ant-fullcalendar-date:hover .ant-fullcalendar-value {
+  color: @customize-hover-text-color;
+}
+
+.ant-fullcalendar-selected-day .ant-fullcalendar-value, .ant-fullcalendar-month-panel-selected-cell .ant-fullcalendar-value {
+  color: #fff;
+}
+
+.ant-fullcalendar-value:hover {
+  color: #fff;
+}
+
+// Card
+@card-hover-border: rgba(0,168,222, 1);
+@card-shadow: 0 2px 8px rgba(0,168,222, 1);
+
+// Descriptions
+@descriptions-bg: @customize-active-bg-color;
+
+.ant-descriptions-bordered .ant-descriptions-item-label {
+  color: #fff;
+}
+
+// Table
+@table-row-hover-bg: @customize-hover-theme-color;
+@table-header-bg: @customize-active-bg-color;
+@table-header-color: #fff;
+@table-footer-bg: @customize-active-bg-color;
+@table-footer-color: #fff;
+@table-selected-row-bg: @customize-hover-theme-color;
+@table-selected-row-color: @customize-active-text-color;
+@table-expanded-row-bg: @customize-hover-theme-color;
+@table-header-icon-color: #fff;
+@table-header-sort-bg: @customize-hover-theme-color;
+@table-body-sort-bg: @customize-hover-theme-color;
+
+// tabs
+.content-container .tab-wrapper {
+  background: transparent !important;
+}
+
+// modal
+.ant-modal-content {
+  box-shadow: 0 0 9px 6px rgba(24, 144, 255, 0.6);
+}
+
+// Progress
+@progress-remaining-color: rgba(24, 144, 255, 0.2);
+
+// Skeleton
+@skeleton-color: @customize-hover-theme-color;
