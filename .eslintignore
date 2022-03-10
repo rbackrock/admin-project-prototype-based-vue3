@@ -1,0 +1,6 @@
+src/assets
+public
+dist
+jsconfig.json
+vite.config.js
+.eslintrc.js
