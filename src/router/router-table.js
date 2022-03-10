@@ -4,29 +4,29 @@
  */
 
 // import AppLayout from '/@/layouts/app-layout'
-// import NotFoundError from '/@/views/features/404'
+import NotFoundError from '/@/views/features/404.vue'
 // import ServerError from '/@/views/features/500'
-// import Login from '/@/views/login'
+import Login from '/@/views/login/index.vue'
 // import Home from '/@/views/home'
 
 // 基本路由
 const base = [
-  // {
-  //   path: '/login',
-  //   name: 'Login',
-  //   component: Login,
-  //   meta: {
-  //     requiresAuth: false
-  //   }
-  // },
-  // {
-  //   path: '/404',
-  //   name: 'NotFound',
-  //   component: NotFoundError,
-  //   meta: {
-  //     requiresAuth: false
-  //   }
-  // },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login,
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: '/404',
+    name: 'NotFound',
+    component: NotFoundError,
+    meta: {
+      requiresAuth: false
+    }
+  },
   // {
   //   path: '/500',
   //   name: 'ServerError',
@@ -49,15 +49,15 @@ const base = [
   //     }
   //   ]
   // },
-  // {
-  //   path: '/:pathMatch(.*)*',
-  //   redirect: {
-  //     name: 'NotFound'
-  //   },
-  //   meta: {
-  //     requiresAuth: false
-  //   }
-  // }
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: {
+      name: 'NotFound'
+    },
+    meta: {
+      requiresAuth: false
+    }
+  }
 ]
 
 // 首页
