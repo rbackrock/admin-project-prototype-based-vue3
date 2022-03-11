@@ -242,7 +242,7 @@ npm run build
 
 ## throttle 方法的使用
 
-假设页面中有 `a-form @finish="handleLogin" />`
+假设页面中有 `<a-form @finish="handleLogin" />`
 
 那么，如果在 `<script setup></script>` 中
 
