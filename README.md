@@ -242,7 +242,7 @@ npm run build
 
 ## throttle 方法的使用
 
-如果在 `<script setup><>` 中
+如果在 `<script setup></script>` 中
 
 ```js
 <script setup>
