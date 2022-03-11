@@ -8,7 +8,6 @@
 
 ## 为什么要写这个原型项目
 
-+ 想要熟悉使用 Vue3
 + 曾经使用过 [Ant Design of React](https://ant.design/docs/react/introduce-cn) 组件库，非常喜欢它的风格
 + 想要有一个属于自己的原型项目基建
 + 基于 Antd 的 Vue3 版本的开箱即用原型项目 Ant Design Pro 没有开源需要付费，需要 ￥8999 ，喜欢但是没钱那就只能自己写一个低配版本了
