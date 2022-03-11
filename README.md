@@ -248,6 +248,7 @@ npm run build
 
 ```js
 <script setup>
+  import { getCurrentInstance } from 'vue'
   import { throttle } from '/@/utils/helper'
 
   const handleLogin = throttle(function (...values) {
