@@ -5,7 +5,7 @@ import router from '/@/router'
 import { businessCodeStatus, httpCodeStatus } from './consts'
 
 const axiosInstance = axios.create({
-  baseURL: `${import.meta.env.REQUEST_BASE}`,
+  baseURL: `${import.meta.env.VITE_API_REQUEST_BASE}`,
   timeout: 6000,
   disableMessage: false
 })

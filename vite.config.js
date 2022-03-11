@@ -5,7 +5,7 @@ import Components from 'unplugin-vue-components/vite'
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
-const REQUEST_BASE = 'http://localhost:8100'
+const PROXY_REQUEST_BASE = 'http://localhost:8100'
 
 export default defineConfig({
   plugins: [
@@ -32,12 +32,12 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: REQUEST_BASE,
+        target: PROXY_REQUEST_BASE,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, 'api')
       },
       '/auth': {
-        target: REQUEST_BASE,
+        target: PROXY_REQUEST_BASE,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/auth/, 'auth')
       }
