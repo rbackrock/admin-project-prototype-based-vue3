@@ -240,7 +240,7 @@ npm run build
 }
 ```
 
-## throttle 方法的使用
+## throttle 方法的使用 
 
 假设页面中有 `<a-form @finish="handleLogin" />`
 
