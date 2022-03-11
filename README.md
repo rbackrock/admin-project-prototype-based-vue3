@@ -217,6 +217,29 @@ npm run build
 }
 ```
 
+# 说明
+
+## 前端路由和导航菜单
+
+导航菜单的数据是后端来维护，它描述的是系统中导航菜单显示的结构，不一定和前端路由 `router-table.js` 的结构一一对应，`router-table.js` 只用于前端管理页面路由使用，它们有关联但是不对等
+
+前端路由表被单独拆分出来，位置在 `/src/router/router-table.js`
+
+因为原型项目使用的 AntdV 组件库的图标是组件，所以菜单中使用的图标专门为 `/src/router/icon-mapper.js` 文件维护
+
+在使用 `router-table.js` 中添加路由时，如果想要该路由直接通过权限效验，直接访问，那么需要在 `meta` 中添加 `requiresAuth: false` 例如：
+
+```js
+{
+  path: '/login',
+  name: 'Login',
+  component: Login,
+  meta: {
+    requiresAuth: false
+  }
+}
+```
+
 # 自定义指令使用
 
 ## 权限自定义指令
@@ -826,29 +849,6 @@ props: {
 + `delete-record` 用于给使用者进行删除业务操作，例如 `@delete-record="handleDeleteRecord"`
 
 完整示例可以[点这里](https://github.com/rbackrock/vue3-scaffold/blob/main/src/views/example/crud/index.vue)查看
-
-# 说明
-
-## 前端路由和导航菜单
-
-导航菜单的数据是后端来维护，它描述的是系统中导航菜单显示的结构，不一定和前端路由 `router-table.js` 的结构一一对应，`router-table.js` 只用于前端管理页面路由使用，它们有关联但是不对等
-
-前端路由表被单独拆分出来，位置在 `/src/router/router-table.js`
-
-因为原型项目使用的 AntdV 组件库的图标是组件，所以菜单中使用的图标专门为 `/src/router/icon-mapper.js` 文件维护
-
-在使用 `router-table.js` 中添加路由时，如果想要该路由直接通过权限效验，直接访问，那么需要在 `meta` 中添加 `requiresAuth: false` 例如：
-
-```js
-{
-  path: '/login',
-  name: 'Login',
-  component: Login,
-  meta: {
-    requiresAuth: false
-  }
-}
-```
 
 # FAQ
 
