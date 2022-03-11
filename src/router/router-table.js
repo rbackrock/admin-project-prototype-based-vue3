@@ -5,7 +5,7 @@
 
 import AppLayout from '/@/layouts/app-layout.vue'
 import NotFoundError from '/@/views/features/404.vue'
-// import ServerError from '/@/views/features/500'
+import ServerError from '/@/views/features/500.vue'
 import Login from '/@/views/login/index.vue'
 import Home from '/@/views/home/index.vue'
 
@@ -27,28 +27,28 @@ const base = [
       requiresAuth: false
     }
   },
-  // {
-  //   path: '/500',
-  //   name: 'ServerError',
-  //   component: ServerError
-  // },
-  // {
-  //   path: '/redirect',
-  //   name: 'Redirect',
-  //   component: AppLayout,
-  //   meta: {
-  //     requiresAuth: false
-  //   },
-  //   children: [
-  //     {
-  //       path: '/redirect/:path(.*)',
-  //       component: () => import('/@/views/features/redirect'),
-  //       meta: {
-  //         requiresAuth: false
-  //       }
-  //     }
-  //   ]
-  // },
+  {
+    path: '/500',
+    name: 'ServerError',
+    component: ServerError
+  },
+  {
+    path: '/redirect',
+    name: 'Redirect',
+    component: AppLayout,
+    meta: {
+      requiresAuth: false
+    },
+    children: [
+      {
+        path: '/redirect/:path(.*)',
+        component: () => import('/@/views/features/redirect'),
+        meta: {
+          requiresAuth: false
+        }
+      }
+    ]
+  },
   {
     path: '/:pathMatch(.*)*',
     redirect: {
