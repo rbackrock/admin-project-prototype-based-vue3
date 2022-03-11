@@ -1,3 +1,14 @@
+<script setup>
+  import { useRouter } from 'vue-router'
+
+  const router = useRouter()
+  const handleBackHome = () => {
+    router.replace({
+        name: 'Home'
+      })
+  }
+</script>
+
 <template>
   <a-result
     status="404"
@@ -14,16 +25,3 @@
     </template>
   </a-result>
 </template>
-
-<script>
-export default {
-  name: 'NotFount',
-  methods: {
-    handleBackHome() {
-      this.$router.replace({
-        name: 'Home'
-      })
-    }
-  }
-}
-</script>

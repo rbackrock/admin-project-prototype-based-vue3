@@ -7,11 +7,3 @@
     <template #extra />
   </a-result>
 </template>
-
-<script>
-export default {
-  name: 'ServerError',
-  methods: {
-  }
-}
-</script>

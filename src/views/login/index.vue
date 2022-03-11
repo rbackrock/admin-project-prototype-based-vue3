@@ -1,7 +1,6 @@
 <script setup>
-  import { reactive, ref } from 'vue'
+  import { reactive, ref, getCurrentInstance } from 'vue'
   import { throttle } from '/@/utils/helper'
-  import { getCurrentInstance } from 'vue'
   import _ from 'lodash'
 
   const loginForm = reactive({
