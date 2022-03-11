@@ -15,13 +15,19 @@
 
 # 运行
 
-开发环境
+预览
+
+```bash
+npm run dev:mock
+```
+
+开发，在 `vite.config.js` 中设置代理服务器
 
 ```bash
 npm run dev
 ```
 
-前端代码打包
+打包
 
 ```bash
 npm run build
