@@ -1,17 +1,17 @@
 # 介绍 
 
-这是按照个人喜好搭建的一套基于 Vue3 和 AntdV 的前端脚手架，不接受 PR ，不定期更新常用组件，因所用框架，组件库，类库不稳定，所以主要用于交流和学习，只关注 Chrome 浏览器正常使用
+这是按照个人喜好搭建的一套基于 Vue3 和 AntdV 的前端原型项目，不接受 PR ，不定期更新常用组件，因所用框架，组件库，类库不稳定，所以主要用于交流和学习，只关注 Chrome 浏览器正常使用
 
-该脚手架提供了三种布局类型，还有一套自定义深蓝色主题，因 AntdV 组件库数量众多，难免在深蓝色的主题下，组件没有完全覆盖
+该原型项目提供了三种布局类型，还有一套自定义深蓝色主题，因 AntdV 组件库数量众多，难免在深蓝色的主题下，组件没有完全覆盖
 
 因精力和水平有限，难免有遗漏和问题，请多包涵
 
-## 为什么要写这个脚手架
+## 为什么要写这个原型项目
 
 + 想要熟悉使用 Vue3
 + 曾经使用过 [Ant Design of React](https://ant.design/docs/react/introduce-cn) 组件库，非常喜欢它的风格
-+ 想要有一个属于自己的脚手架基建
-+ 基于 Antd 的 Vue3 版本的开箱即用脚手架 Ant Design Pro 没有开源需要付费，需要 ￥8999 ，喜欢但是没钱那就只能自己写一个低配版本了
++ 想要有一个属于自己的原型项目基建
++ 基于 Antd 的 Vue3 版本的开箱即用原型项目 Ant Design Pro 没有开源需要付费，需要 ￥8999 ，喜欢但是没钱那就只能自己写一个低配版本了
 
 # 运行
 
@@ -27,11 +27,11 @@ npm run dev
 npm run build
 ```
 
-默认情况下使用纯前端运行脚手架，使用了 `Mock` 如果要关闭 `Mock` 请在 `src/vue.config.js` 里，设置 `mockMode` 为 `false`
+默认情况下使用纯前端运行原型项目，使用了 `Mock` 如果要关闭 `Mock` 请在 `src/vue.config.js` 里，设置 `mockMode` 为 `false`
 
 # 预览
 
-脚手架提供三种布局样式和自定义主题，接下来分别对每种布局样式展示默认主题和深蓝色主题截图，如果截图无法显示，试试刷新，或者可以在 [screenshots](https://github.com/rbackrock/vue3-scaffold/tree/main/screenshots) 查看
+原型项目提供三种布局样式和自定义主题，接下来分别对每种布局样式展示默认主题和深蓝色主题截图，如果截图无法显示，试试刷新，或者可以在 [screenshots](https://github.com/rbackrock/vue3-scaffold/tree/main/screenshots) 查看
 
 ## Mix Menu Layout
 
@@ -123,7 +123,7 @@ npm run build
 
 # 约定
 
-当前脚手架的一些预置功能和能力需要后端数据的支持，需要和后端响应的数据有一些必要的约定
+当前原型项目的一些预置功能和能力需要后端数据的支持，需要和后端响应的数据有一些必要的约定
 
 ## 异步请求数据响应体的约定
 
@@ -146,7 +146,7 @@ npm run build
   title: '首页', // 导航菜单的名称
   uniqueTag: 'Home', // 此菜单唯一标识，如果不使用 a-menu-item-group 组件的话，默认和 routeName 一致即可，否则的话自定义一个唯一标识字符串 
   type: 'menu', // 菜单的类型，一共三种，分别是 catalog group menu 其中 catalog 其实代码的是 a-sub-menu 组件，group 代表的是 a-menu-item-group 组件，menu 代表的是 a-menu-item 组件
-  fixed: true, // 此脚手架默认带有菜单标签页，fixed 代表此菜单页无法被关闭
+  fixed: true, // 此原型项目默认带有菜单标签页，fixed 代表此菜单页无法被关闭
   children: [] // 导航菜单嵌套的字段
 }
 ```
@@ -171,7 +171,7 @@ npm run build
   title: '首页', // 导航菜单的名称
   uniqueTag: 'Home', // 此菜单唯一标识，如果不使用 a-menu-item-group 组件的话，默认和 routeName 一致即可，否则的话自定义一个唯一标识字符串 
   type: 'menu', // 菜单的类型，一共三种，分别是 catalog group menu 其中 catalog 其实代码的是 a-sub-menu 组件，group 代表的是 a-menu-item-group 组件，menu 代表的是 a-menu-item 组件
-  fixed: true, // 此脚手架默认带有菜单标签页，fixed 代表此菜单页无法被关闭
+  fixed: true, // 此原型项目默认带有菜单标签页，fixed 代表此菜单页无法被关闭
   children: [] // 导航菜单嵌套的字段
 }
 ```
@@ -221,7 +221,7 @@ npm run build
 
 ## 权限自定义指令
 
-权限指令分为 `disable` 和 `remove` 两种，脚手架会约定用户 Rule 数据格式
+权限指令分为 `disable` 和 `remove` 两种，原型项目会约定用户 Rule 数据格式
 
 + `disable` 类型的权限指令使用该指令会使目标组件的 `disable` 为 `true` 常见于 `a-button` 组件
 
@@ -229,7 +229,7 @@ npm run build
 
   ```html
   <!-- disabledAdd, disabledModify, disabledDelete 为按钮 disabled 属性的响应属性，必须要有 -->
-  <!-- 脚手架会约定用户 rule 中权限的描述为：'页面name:权限描述'  -->
+  <!-- 原型项目会约定用户 rule 中权限的描述为：'页面name:权限描述'  -->
   <!-- 例如该例子中用户的 rule 数据为 ['ExamplePermission:add', 'ExamplePermission:modify'] -->
   <!-- 该指令传入的数据直接使用权限描述的数组即可 -->
   <a-button v-permission:disabledAdd.disabled="['add']" :disabled="disabledAdd">新增</a-button>
@@ -835,7 +835,7 @@ props: {
 
 前端路由表被单独拆分出来，位置在 `/src/router/router-table.js`
 
-因为脚手架使用的 AntdV 组件库的图标是组件，所以菜单中使用的图标专门为 `/src/router/icon-mapper.js` 文件维护
+因为原型项目使用的 AntdV 组件库的图标是组件，所以菜单中使用的图标专门为 `/src/router/icon-mapper.js` 文件维护
 
 在使用 `router-table.js` 中添加路由时，如果想要该路由直接通过权限效验，直接访问，那么需要在 `meta` 中添加 `requiresAuth: false` 例如：
 
