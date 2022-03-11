@@ -39,6 +39,10 @@ function makeFakeRoutes(app, mockMetadata = []) {
 
 async function createServer() {
   const app = express()
+  app.use(express.json())
+  app.use(express.urlencoded({
+    extended: true
+  }))
   const vite = await createViteServer({
     server: { middlewareMode: 'html' }
   })

@@ -2,8 +2,8 @@ module.exports = [
   {
     url: '/api/login',
     type: 'post',
-    response(config) {
-      const { username } = config.body
+    response(req) {
+      const { username } = req.body
 
       // 前端传来的密码为加密过的，正常情况下，此处需要后端用私钥解密进行密码比对，这里为了 mock 省略该步骤，用户名对，直接登录
       if (username === 'admin') {
