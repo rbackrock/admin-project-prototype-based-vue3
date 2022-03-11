@@ -23,11 +23,11 @@ export const throttle = (cb, ctx = undefined, millisecond = 3000, opts = {
  * @param {Object} opts lodash 中防抖的参数
  * @returns 防抖事件函数
  */
-export const debounce = (cb, millisecond = 300, opts = {
+export const debounce = (cb, ctx = undefined, millisecond = 300, opts = {
   leading: true,
   trailing: false
 }) => _.debounce(function (...args) {
-  cb && cb.call(this, ...args)
+  cb && cb.call(ctx ? ctx : this, ...args)
 }, millisecond, opts)
 
 /**
