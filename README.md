@@ -240,6 +240,34 @@ npm run build
 }
 ```
 
+## throttle 方法的使用
+
+如果在 `<script setup><>` 中
+
+```js
+<script setup>
+  import { throttle } from '/@/utils/helper'
+
+  const handleLogin = throttle(function (...values) {
+    console.log(this)
+  }, getCurrentInstance().proxy)
+</script>
+```
+
+如果在一般 `<script></script>` 中
+
+```js
+<script setup>
+  export default {
+    methods: {
+      handleLogin: throttle.call(this, function (...values) {
+        console.log(this)
+      })
+    }
+  }
+</script>
+```
+
 # 自定义指令使用
 
 ## 权限自定义指令
