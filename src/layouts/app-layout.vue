@@ -9,6 +9,7 @@
 import { mapState } from 'vuex'
 import { layoutType as layoutTypeConsts } from '/@/consts'
 import Loading from './components/Loading.vue'
+import Error from '/@/views/features/500.vue'
 import NavigationSiderLayout from './navigation-sider-layout.vue'
 import NavigationTopLayout from './navigation-top-layout.vue'
 import NavigationMixLayout from './navigation-mix-layout.vue'
@@ -17,13 +18,15 @@ export default {
   name: 'AppLayout',
   components: {
     Loading,
+    Error,
     NavigationSiderLayout,
     NavigationTopLayout,
     NavigationMixLayout
   },
   data() {
     return {
-      hasReady: false
+      hasReady: false,
+      hasError: false
     }
   },
   computed: {
