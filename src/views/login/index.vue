@@ -9,16 +9,16 @@
     password: 'admin'
   })
   const loading = ref(false)
-  const handleLogin = throttle.call(getCurrentInstance, function (...values) {
-    console.log(values)
-  })
+  const handleLogin = throttle(function (...values) {
+    // TODO
+  }, getCurrentInstance().proxy)
 </script>
 
 <template>
   <a-card class="container">
     <a-alert
       message="用户名和密码均为 admin"
-      type="info" 
+      type="info"
       style="margin: 0 0 20px 0;" 
     />
     <a-form

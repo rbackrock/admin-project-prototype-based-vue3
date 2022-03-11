@@ -8,11 +8,11 @@ import _ from 'lodash'
  * @param {Object} opts lodash 中节流的参数
  * @returns 节流事件函数
  */
-export const throttle = (cb, millisecond = 3000, opts = {
+export const throttle = (cb, ctx = undefined, millisecond = 3000, opts = {
   leading: true,
   trailing: false
 }) => _.throttle(function (...args) {
-  cb && cb.call(this, ...args)
+  cb && cb.call(ctx ? ctx : this, ...args)
 }, millisecond, opts)
 
 /**
