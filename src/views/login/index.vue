@@ -10,7 +10,17 @@
   })
   const loading = ref(false)
   const handleLogin = throttle(function (...values) {
-    // TODO
+    this.loading = true
+    this.$store.dispatch('auth/login', {
+      username: loginForm.username,
+      password: loginForm.password
+    }).then(() => {
+      this.$router.replace({
+        name: 'Home'
+      })
+    }, () => {
+      this.loading = false
+    })
   }, getCurrentInstance().proxy)
 </script>
 
