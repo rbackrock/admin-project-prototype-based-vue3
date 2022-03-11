@@ -3,8 +3,8 @@ import {
 } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
-import * as consts from '@/consts'
-import * as utils from '@/utils/helper'
+import * as consts from '/@/consts'
+import * as utils from '/@/utils/helper'
 
 /**
  * 获取当前菜单所处分类中，父类的 key

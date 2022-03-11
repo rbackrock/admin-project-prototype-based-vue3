@@ -5,7 +5,7 @@ import {
   onDeactivated
 } from 'vue'
 import { useStore } from 'vuex'
-import * as consts from '@/consts'
+import * as consts from '/@/consts'
 
 async function reBuildMenu(menuRef, menuLiWidth, navigationMenu, store) {
   await nextTick()

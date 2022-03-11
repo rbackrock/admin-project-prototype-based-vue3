@@ -1,10 +1,13 @@
 <template>
-  <component :is="navigationComponent" class="main-layout"></component>
+  <component
+    :is="navigationComponent"
+    class="main-layout"
+  />
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import { layoutType as layoutTypeConsts } from '@/consts'
+import { layoutType as layoutTypeConsts } from '/@/consts'
 import NavigationSiderLayout from './navigation-sider-layout.vue'
 import NavigationTopLayout from './navigation-top-layout.vue'
 import NavigationMixLayout from './navigation-mix-layout.vue'

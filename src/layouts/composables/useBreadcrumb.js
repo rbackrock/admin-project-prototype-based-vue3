@@ -1,7 +1,7 @@
 import { watch, ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
-import * as utils from '@/utils/helper'
+import * as utils from '/@/utils/helper'
 
 export default function useBreadcrumb() {
   const route = useRoute()

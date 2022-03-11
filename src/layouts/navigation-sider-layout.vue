@@ -8,7 +8,7 @@
         </a>
       </div>
       <div class="navigation">
-        <navigation-menu :theme="themeType === themeConsts.DEEP_BLUE_THEME ? 'light' : 'dark'" />
+        <!-- <navigation-menu :theme="themeType === themeConsts.DEEP_BLUE_THEME ? 'light' : 'dark'" /> -->
       </div>
       <div class="bottom-link">
         <menu-unfold-outlined
@@ -45,15 +45,15 @@
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
-import { themeConsts } from '@/consts'
-import NavigationMenu from './components/TheNavigationMenu'
+import { themeConsts } from '/@/consts'
+// import NavigationMenu from './components/TheNavigationMenu.vue'
 import HeaderControl from './components/TheHeaderControl.vue'
 import MainContent from './components/TheMainContent.vue'
 
 export default {
   name: 'NavigationSiderLayout',
   components: {
-    NavigationMenu,
+    // NavigationMenu,
     MenuUnfoldOutlined,
     MenuFoldOutlined,
     HeaderControl,

@@ -18,7 +18,7 @@
     <a-layout class="base-container">
       <a-layout-sider class="side-nav-container" theme="light" v-model:collapsed="collapsed" :trigger="null" collapsible width="210">
         <div class="navigation">
-          <navigation-menu theme="light" />
+          <!-- <navigation-menu theme="light" /> -->
         </div>
         <div class="bottom-link">
           <menu-unfold-outlined
@@ -39,14 +39,14 @@
 <script>
 import { ref } from 'vue'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
-import NavigationMenu from './components/TheNavigationMenu'
+// import NavigationMenu from './components/TheNavigationMenu.vue'
 import HeaderControl from './components/TheHeaderControl.vue'
 import MainContent from './components/TheMainContent.vue'
 
 export default {
   name: 'NavigationMixLayout',
   components: {
-    NavigationMenu,
+    // NavigationMenu,
     MenuUnfoldOutlined,
     MenuFoldOutlined,
     HeaderControl,

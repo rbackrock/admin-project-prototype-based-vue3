@@ -27,7 +27,7 @@ import {
   LogoutOutlined,
   UserOutlined
 } from '@ant-design/icons-vue'
-import { layoutType } from '@/consts'
+import { layoutType } from '/@/consts'
 
 export default {
   name: 'HeaderControl',

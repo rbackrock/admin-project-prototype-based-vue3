@@ -12,7 +12,7 @@
             </div>
           </div>
           <div class="header-menu">
-            <navigation-menu mode="horizontal" />
+            <!-- <navigation-menu mode="horizontal" /> -->
           </div>
           <div class="header-control">
             <header-control />
@@ -25,14 +25,14 @@
 </template>
 
 <script>
-import NavigationMenu from './components/TheNavigationMenu'
+// import NavigationMenu from './components/TheNavigationMenu.vue'
 import HeaderControl from './components/TheHeaderControl.vue'
 import MainContent from './components/TheMainContent.vue'
 
 export default {
   name: 'NavigationTopLayout',
   components: {
-    NavigationMenu,
+    // NavigationMenu,
     HeaderControl,
     MainContent
   }
