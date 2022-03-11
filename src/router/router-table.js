@@ -3,11 +3,11 @@
  * https://next.router.vuejs.org/zh/guide/essentials/route-matching-syntax.html#%E5%9C%A8%E5%8F%82%E6%95%B0%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89%E6%AD%A3%E5%88%99
  */
 
-// import AppLayout from '/@/layouts/app-layout'
+import AppLayout from '/@/layouts/app-layout.vue'
 import NotFoundError from '/@/views/features/404.vue'
 // import ServerError from '/@/views/features/500'
 import Login from '/@/views/login/index.vue'
-// import Home from '/@/views/home'
+import Home from '/@/views/home/index.vue'
 
 // 基本路由
 const base = [
@@ -62,22 +62,22 @@ const base = [
 
 // 首页
 const home = [
-  // {
-  //   path: '/',
-  //   component: AppLayout,
-  //   redirect: {
-  //     name: 'Home'
-  //   },
-  //   children: [
-  //     {
-  //       path: 'home',
-  //       name: 'Home',
-  //       meta: {
-  //       },
-  //       component: Home
-  //     }
-  //   ]
-  // }
+  {
+    path: '/',
+    component: AppLayout,
+    redirect: {
+      name: 'Home'
+    },
+    children: [
+      {
+        path: 'home',
+        name: 'Home',
+        meta: {
+        },
+        component: Home
+      }
+    ]
+  }
 ]
 
 // 系统路由
