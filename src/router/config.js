@@ -43,26 +43,10 @@ router.beforeEach(async (to) => {
     }
   }
 
-  // 如果没有用户信息，则可能是已经登录成功，但是用户刷新了页面，此时重新拉取必要数据即可
   if (!user) {
-    try {
-      await store.dispatch('system/buildNavigationMenu')
-      await store.dispatch('system/buildDictionary')
-      await store.dispatch('user/getUser')
-      await store.dispatch('user/rule')
-
-      // 在有令牌的情况下，尝试路由登录页则跳转首页
-      if (to.name === 'Login') {
-        return {
-          name: 'Home',
-          replace: true
-        }
-      }
-
-      return hasAuthRoute(to) ? { ...to, replace: true } : false
-    } catch (error) {
+    if (to.name === 'Login') {
       return {
-        name: 'ServerError',
+        name: 'Home',
         replace: true
       }
     }

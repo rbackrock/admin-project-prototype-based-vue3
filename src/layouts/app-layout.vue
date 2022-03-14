@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, useStore } from 'vuex'
 import { layoutType as layoutTypeConsts } from '/@/consts'
 import Loading from './components/Loading.vue'
 import ServerError from '/@/views/features/500.vue'
@@ -25,7 +25,7 @@ export default {
   },
   data() {
     return {
-      hasReady: true,
+      hasReady: false,
       hasError: false
     }
   },
@@ -37,16 +37,36 @@ export default {
         componentsMapper[layoutTypeConsts.TOP_MENU] = 'navigation-top-layout'
         componentsMapper[layoutTypeConsts.MIX_MENU] = 'navigation-mix-layout'
 
-        if (this.hasReady) {
-          if (this.hasError) {
-            return 'server-error'
+        if (this.hasError) {
+          return 'server-error'
+        } else {
+          if (this.hasReady) {
+            return componentsMapper[state.layoutType]
           }
-          return componentsMapper[state.layoutType]
-        }
 
-        return 'loading'
+          return 'loading'
+        }
       }
     })
+  },
+  async created() {
+    const store = useStore()
+    const user = this.$store.getters['user/userInfo']
+
+    if (!user) {
+      try {
+        await store.dispatch('system/buildNavigationMenu')
+        await store.dispatch('system/buildDictionary')
+        await store.dispatch('user/getUser')
+        await store.dispatch('user/rule')
+
+        this.hasError = false
+        this.hasReady = true
+      } catch (error) {
+        this.hasError = true
+        this.hasReady = false
+      }
+    }
   }
 }
 </script>
