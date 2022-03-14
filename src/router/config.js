@@ -43,12 +43,11 @@ router.beforeEach(async (to) => {
     }
   }
 
-  if (!user) {
-    if (to.name === 'Login') {
-      return {
-        name: 'Home',
-        replace: true
-      }
+  // 获取系统基本信息在 app-layout.vue 里做
+  if (!user && to.name === 'Login') {
+    return {
+      name: 'Home',
+      replace: true
     }
   }
 
