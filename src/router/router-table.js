@@ -42,7 +42,7 @@ const base = [
     children: [
       {
         path: '/redirect/:path(.*)',
-        component: () => import('/@/views/features/redirect'),
+        component: () => import('/@/views/features/redirect.vue'),
         meta: {
           requiresAuth: false
         }
