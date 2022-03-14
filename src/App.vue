@@ -1,11 +1,11 @@
 <script setup>
-import zhCN from 'ant-design-vue/es/locale/zh_CN'
-import dayjs from 'dayjs'
-import 'dayjs/locale/zh.js'
+  import zhCN from 'ant-design-vue/es/locale/zh_CN'
+  import dayjs from 'dayjs'
+  import 'dayjs/locale/zh.js'
 
-dayjs.locale('zh')
+  dayjs.locale('zh')
 
-const locale = zhCN
+  const locale = zhCN
 </script>
 
 <template>

@@ -1,3 +1,6 @@
+<script setup>
+</script>
+
 <template>
   <div style="margin: 24px auto; width: 80%;">
     <a-card title="Home Example">
@@ -20,15 +23,3 @@
     </a-card>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'Home',
-  components: {
-  },
-  setup() {
-    return {
-    }
-  }
-}
-</script>

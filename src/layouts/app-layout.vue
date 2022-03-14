@@ -1,57 +1,20 @@
-<template>
-  <component
-    :is="navigationComponent"
-    class="main-layout"
-  />
-</template>
+<script setup>
+  import { ref, onMounted, computed } from 'vue'
+  import { useStore } from 'vuex'
+  import { layoutType as layoutTypeConsts } from '/@/consts'
+  import Loading from './components/TheLoading.vue'
+  import ServerError from '/@/views/features/500.vue'
+  import NavigationSiderLayout from './navigation-sider-layout.vue'
+  import NavigationTopLayout from './navigation-top-layout.vue'
+  import NavigationMixLayout from './navigation-mix-layout.vue'
 
-<script>
-import { mapState, useStore } from 'vuex'
-import { layoutType as layoutTypeConsts } from '/@/consts'
-import Loading from './components/TheLoading.vue'
-import ServerError from '/@/views/features/500.vue'
-import NavigationSiderLayout from './navigation-sider-layout.vue'
-import NavigationTopLayout from './navigation-top-layout.vue'
-import NavigationMixLayout from './navigation-mix-layout.vue'
+  const store = useStore()
 
-export default {
-  name: 'AppLayout',
-  components: {
-    Loading,
-    ServerError,
-    NavigationSiderLayout,
-    NavigationTopLayout,
-    NavigationMixLayout
-  },
-  data() {
-    return {
-      hasReady: false,
-      hasError: false
-    }
-  },
-  computed: {
-    ...mapState('settings', {
-      navigationComponent: function (state) {
-        const componentsMapper = []
-        componentsMapper[layoutTypeConsts.SIDE_MENU] = 'navigation-sider-layout'
-        componentsMapper[layoutTypeConsts.TOP_MENU] = 'navigation-top-layout'
-        componentsMapper[layoutTypeConsts.MIX_MENU] = 'navigation-mix-layout'
+  const hasReady = ref(false)
+  const hasError = ref(false)
 
-        if (this.hasError) {
-          return 'server-error'
-        } else {
-          if (this.hasReady) {
-            return componentsMapper[state.layoutType]
-          }
-
-          return 'loading'
-        }
-      }
-    })
-  },
-  async created() {
-    const store = useStore()
-    const user = this.$store.getters['user/userInfo']
+  onMounted(async () => {
+    const user = store.getters['user/userInfo']
 
     if (!user) {
       try {
@@ -60,18 +23,43 @@ export default {
         await store.dispatch('user/getUser')
         await store.dispatch('user/rule')
 
-        this.hasError = false
-        this.hasReady = true
+        hasError.value = false
+        hasReady.value = true
       } catch (error) {
-        this.hasError = true
-        this.hasReady = false
+        hasError.value = true
+        hasReady.value = false
 
         throw error
       }
     }
-  }
-}
+  })
+
+  const navigationComponent = computed(() => {
+    const layoutType = store.getters['settings/layoutType']
+    const componentsMapper = []
+
+    componentsMapper[layoutTypeConsts.SIDE_MENU] = NavigationSiderLayout
+    componentsMapper[layoutTypeConsts.TOP_MENU] = NavigationTopLayout
+    componentsMapper[layoutTypeConsts.MIX_MENU] = NavigationMixLayout
+
+    if (hasError.value) {
+      return ServerError
+    } else {
+      if (hasReady.value) {
+        return componentsMapper[layoutType]
+      }
+
+      return Loading
+    }
+  })
 </script>
+
+<template>
+  <component
+    :is="navigationComponent"
+    class="main-layout"
+  />
+</template>
 
 <style lang="less" scoped>
 </style>

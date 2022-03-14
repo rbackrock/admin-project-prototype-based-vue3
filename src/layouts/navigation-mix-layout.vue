@@ -1,6 +1,19 @@
+<script setup>
+  import { ref } from 'vue'
+  import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
+  // import NavigationMenu from './components/TheNavigationMenu.vue'
+  import HeaderControl from './components/TheHeaderControl.vue'
+  import MainContent from './components/TheMainContent.vue'
+
+  const collapsed = ref(false)
+</script>
+
 <template>
   <a-layout class="mix-layout-container">
-    <a-layout-header class="header" theme="dark">
+    <a-layout-header
+      class="header" 
+      theme="dark"
+    >
       <div class="header-wrapper">
         <div class="header-part1">
           <div class="logo">
@@ -16,7 +29,14 @@
       </div>
     </a-layout-header>
     <a-layout class="base-container">
-      <a-layout-sider class="side-nav-container" theme="light" v-model:collapsed="collapsed" :trigger="null" collapsible width="210">
+      <a-layout-sider
+        v-model:collapsed="collapsed"
+        class="side-nav-container"
+        theme="light"
+        :trigger="null"
+        collapsible
+        width="210"
+      >
         <div class="navigation">
           <!-- <navigation-menu theme="light" /> -->
         </div>
@@ -26,7 +46,11 @@
             class="trigger"
             @click="() => (collapsed = !collapsed)"
           />
-          <menu-fold-outlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
+          <menu-fold-outlined
+            v-else
+            class="trigger"
+            @click="() => (collapsed = !collapsed)"
+          />
         </div>
       </a-layout-sider>
       <a-layout>
@@ -35,32 +59,6 @@
     </a-layout>
   </a-layout>
 </template>
-
-<script>
-import { ref } from 'vue'
-import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
-// import NavigationMenu from './components/TheNavigationMenu.vue'
-import HeaderControl from './components/TheHeaderControl.vue'
-import MainContent from './components/TheMainContent.vue'
-
-export default {
-  name: 'NavigationMixLayout',
-  components: {
-    // NavigationMenu,
-    MenuUnfoldOutlined,
-    MenuFoldOutlined,
-    HeaderControl,
-    MainContent
-  },
-  setup() {
-    const collapsed = ref(false)
-
-    return {
-      collapsed
-    }
-  }
-}
-</script>
 
 <style lang="less" scoped>
   :deep(.ant-layout-sider-children) {
