@@ -1,5 +1,5 @@
 <template>
-  <div class="footer-container">Copyright<CopyrightCircleOutlined /> vue3-scaffold</div>
+  <div class="footer-container">Copyright<CopyrightCircleOutlined /> vue3-project-prototype</div>
 </template>
 
 <script>
