@@ -1,24 +1,30 @@
 <script setup>
   import { reactive, ref, getCurrentInstance } from 'vue'
+  import { useRouter } from 'vue-router'
   import { throttle } from '/@/utils/helper'
   import _ from 'lodash'
+  import { useStore } from 'vuex'
+
+  const store = useStore()
+  const router = useRouter()
 
   const loginForm = reactive({
     username: 'admin',
     password: 'admin'
   })
   const loading = ref(false)
+
   const handleLogin = throttle(function (...values) {
-    this.loading = true
-    this.$store.dispatch('auth/login', {
+    loading.value = true
+    store.dispatch('auth/login', {
       username: loginForm.username,
       password: loginForm.password
     }).then(() => {
-      this.$router.replace({
+      router.replace({
         name: 'Home'
       })
     }, () => {
-      this.loading = false
+      loading.value = false
     })
   }, getCurrentInstance().proxy)
 </script>
