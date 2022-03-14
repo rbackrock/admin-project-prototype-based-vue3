@@ -8,7 +8,7 @@
 <script>
 import { mapState, useStore } from 'vuex'
 import { layoutType as layoutTypeConsts } from '/@/consts'
-import Loading from './components/Loading.vue'
+import Loading from './components/TheLoading.vue'
 import ServerError from '/@/views/features/500.vue'
 import NavigationSiderLayout from './navigation-sider-layout.vue'
 import NavigationTopLayout from './navigation-top-layout.vue'
