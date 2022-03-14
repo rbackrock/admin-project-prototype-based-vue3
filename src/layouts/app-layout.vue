@@ -65,6 +65,8 @@ export default {
       } catch (error) {
         this.hasError = true
         this.hasReady = false
+
+        throw error
       }
     }
   }
