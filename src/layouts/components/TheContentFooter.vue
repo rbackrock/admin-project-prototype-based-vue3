@@ -1,19 +1,14 @@
-<template>
-  <div class="footer-container">Copyright<CopyrightCircleOutlined /> vue3-project-prototype</div>
-</template>
-
-<script>
-import {
-  CopyrightCircleOutlined
-} from '@ant-design/icons-vue'
-
-export default {
-  name: 'ContentFooter',
-  components: {
+<script setup>
+  import {
     CopyrightCircleOutlined
-  }
-}
+  } from '@ant-design/icons-vue'
 </script>
+
+<template>
+  <div class="footer-container">
+    Copyright<CopyrightCircleOutlined />vue3-project-prototype
+  </div>
+</template>
 
 <style lang="less" scoped>
   .footer-container {

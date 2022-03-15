@@ -19,7 +19,7 @@ function encryptToken(token) {
   const encryptTokenArray = []
 
   for (let i = 0; i < STEP_NUM; i++) {
-    encryptTokenArray.push(encrypt(encryptKeys.publicKeyForFrontend, token.substr(i * STEP, STEP)))
+    encryptTokenArray.push(encrypt(encryptKeys.publicKeyForFrontend, token.substring(i * STEP, STEP + 1)))
   }
 
   return encryptTokenArray

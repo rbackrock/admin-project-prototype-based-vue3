@@ -1,11 +1,28 @@
+<script setup>
+  import { computed } from 'vue'
+  import { useTabViewsStore } from '/@/store/tab-views'
+  import { MoreOutlined, CloseOutlined, ReloadOutlined } from '@ant-design/icons-vue'
+  import TabView from './TheTabView.vue'
+
+  const tabViewsStore = useTabViewsStore()
+
+  const cacheTabView = computed(() => tabViewsStore.cacheViewsKeys)
+</script>
+
 <template>
   <div class="content-container">
     <tab-View />
     <div class="content-wrapper">
       <a-layout-content style="min-height: 100%;">
-        <router-view v-slot="{ Component, route }" :key="$route.path">
+        <router-view
+          v-slot="{ Component, route }"
+          :key="$route.path"
+        >
           <keep-alive :include="cacheTabView">
-            <component :is="Component" :key="route.meta.usePathKey ? route.path : undefined" />
+            <component
+              :is="Component"
+              :key="route.meta.usePathKey ? route.path : undefined"
+            />
           </keep-alive>
         </router-view>
       </a-layout-content>
@@ -13,29 +30,6 @@
     </div>
   </div>
 </template>
-
-<script>
-import { computed } from 'vue'
-import { useTabViewsStore } from '/@/store/tab-views'
-import { MoreOutlined, CloseOutlined, ReloadOutlined } from '@ant-design/icons-vue'
-import TabView from './TheTabView.vue'
-
-export default {
-  name: 'MainContent',
-  components: {
-    MoreOutlined,
-    CloseOutlined,
-    ReloadOutlined,
-    TabView
-  },
-  setup() {
-    const tabViewsStore = useTabViewsStore()
-    return {
-      cacheTabView: computed(() => tabViewsStore.cacheViewsKeys)
-    }
-  }
-}
-</script>
 
 <style lang="less" scoped>
   .content-container {

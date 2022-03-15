@@ -21,7 +21,7 @@ export const useSystemStore = defineStore('system', {
       const navigationMenuOrigin = state.navigationMenu
       const splitLeft = [...navigationMenuOrigin].splice(0, splitIndex)
       const splitRight = [...navigationMenuOrigin].splice(splitIndex, navigationMenuOrigin.length)
-  
+
       splitLeft.push({
         routeName: 'TopLayoutMore',
         title: '...',
@@ -29,7 +29,7 @@ export const useSystemStore = defineStore('system', {
         type: 'catalog',
         children: splitRight
       })
-  
+
       return splitLeft
     },
 
@@ -46,44 +46,36 @@ export const useSystemStore = defineStore('system', {
 
   actions: {
     async buildNavigationMenu() {
-      try {
-        const { data } = await api.queryMenu()
-        this.navigationMenu = makeNavigationMenu(data)
-        this.requiresAuthMenuOfKeys = getRspMenuTableKeys(data)
+      const { data } = await api.queryMenu()
+      this.navigationMenu = makeNavigationMenu(data)
+      this.requiresAuthMenuOfKeys = getRspMenuTableKeys(data)
 
-        return Promise.resolve(data)
-      } catch (error) {
-        return Promise.reject(error)
-      }
+      return data
     },
 
     async buildDictionary() {
-      try {
-        const { data } = await api.queryDictionary()
-        const dictionary = {}
-        for (let i = 0; i < data.length; i++) {
-          const current = data[i]
-  
-          dictionary[current.typeName] = {
-            typeDescription: current.typeDescription,
-            code: {},
-            list: current.code
-          }
-  
-          for (let n = 0; n < current.code.length; n++) {
-            const currentCode = current.code[n]
-            dictionary[current.typeName].code[currentCode.codeName] = {
-              codeDescription: currentCode.codeDescription,
-              codeValue: currentCode.codeValue
-            }
+      const { data } = await api.queryDictionary()
+      const dictionary = {}
+      for (let i = 0; i < data.length; i++) {
+        const current = data[i]
+
+        dictionary[current.typeName] = {
+          typeDescription: current.typeDescription,
+          code: {},
+          list: current.code
+        }
+
+        for (let n = 0; n < current.code.length; n++) {
+          const currentCode = current.code[n]
+          dictionary[current.typeName].code[currentCode.codeName] = {
+            codeDescription: currentCode.codeDescription,
+            codeValue: currentCode.codeValue
           }
         }
-        this.dictionary = dictionary
-  
-        return Promise.resolve(data)
-      } catch (error) {
-        return Promise.reject(error)
       }
+      this.dictionary = dictionary
+
+      return data
     }
   }
 })

@@ -58,6 +58,7 @@ export const useTabViewsStore = defineStore('tabViews', {
 
         return deleteRouteNamesKey.indexOf(route.routeName) === -1
       })
+
       this.cacheViewsKeys = this.cacheViewsKeys.filter((routeName) => {
         if (fixedRouteNameKeys.indexOf(routeName) !== -1) {
           return true
@@ -94,7 +95,6 @@ export const useTabViewsStore = defineStore('tabViews', {
 
     closeAllToTheRight(reserveRouteName) {
       const reserveRouteNameIndex = this.cacheViewsKeys.findIndex((k) => k === reserveRouteName)
-
       if (reserveRouteNameIndex !== this.cacheViewsKeys.length - 1) {
         const deleteRouteNamesKey = this.cacheViewsKeys.filter((k, index) => index > reserveRouteNameIndex)
         this.del(deleteRouteNamesKey)

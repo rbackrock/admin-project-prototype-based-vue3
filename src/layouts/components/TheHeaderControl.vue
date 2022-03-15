@@ -1,3 +1,33 @@
+<script setup>
+  import { computed } from 'vue'
+  import { useSettingsStore } from '/@/store/settings'
+  import { useAuthStore } from '/@/store/auth'
+  import { useUserStore } from '/@/store/user'
+  import { useRouter } from 'vue-router'
+  import {
+    DownOutlined,
+    LogoutOutlined,
+    UserOutlined
+  } from '@ant-design/icons-vue'
+  import { layoutType } from '/@/consts'
+
+  const settingsStore = useSettingsStore()
+  const authStore = useAuthStore()
+  const userStore = useUserStore()
+  const router = useRouter()
+
+  const userInfo = computed(() => userStore.userInfo)
+  const isSiderLayout = computed(() => settingsStore.isMenuLayout(layoutType.SIDE_MENU))
+
+  function handleLogout() {
+    authStore.logout().then(() => {
+      router.replace({
+        name: 'Login'
+      })
+    })
+  }
+</script>
+
 <template>
   <a-dropdown>
     <span class="username-wrapper">
@@ -17,51 +47,6 @@
     </template>
   </a-dropdown>
 </template>
-
-<script>
-import { computed } from 'vue'
-import { useSettingsStore } from '/@/store/settings'
-import { useAuthStore } from '/@/store/auth'
-import { useUserStore } from '/@/store/user'
-import { useRouter } from 'vue-router'
-import {
-  DownOutlined,
-  LogoutOutlined,
-  UserOutlined
-} from '@ant-design/icons-vue'
-import { layoutType } from '/@/consts'
-
-export default {
-  name: 'HeaderControl',
-  components: {
-    DownOutlined,
-    LogoutOutlined,
-    UserOutlined
-  },
-  setup() {
-    const settingsStore = useSettingsStore()
-    const authStore = useAuthStore()
-    const userStore = useUserStore()
-    const router = useRouter()
-    const userInfo = computed(() => userStore.userInfo)
-    const isSiderLayout = computed(() => settingsStore.isMenuLayout(layoutType.SIDE_MENU))
-
-    const handleLogout = () => {
-      authStore.logout().then(() => {
-        router.replace({
-          name: 'Login'
-        })
-      })
-    }
-
-    return {
-      userInfo,
-      handleLogout,
-      isSiderLayout
-    }
-  }
-}
-</script>
 
 <style lang="less" scoped>
   :deep(.bell-container) {

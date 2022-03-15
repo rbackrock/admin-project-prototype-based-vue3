@@ -1,3 +1,9 @@
+<script setup>
+  // import NavigationMenu from './components/TheNavigationMenu.vue'
+  import HeaderControl from './components/TheHeaderControl.vue'
+  import MainContent from './components/TheMainContent.vue'
+</script>
+
 <template>
   <a-layout class="basic-layout">
     <a-layout-header class="basic-header">
@@ -23,21 +29,6 @@
     <main-content />
   </a-layout>
 </template>
-
-<script>
-// import NavigationMenu from './components/TheNavigationMenu.vue'
-import HeaderControl from './components/TheHeaderControl.vue'
-import MainContent from './components/TheMainContent.vue'
-
-export default {
-  name: 'NavigationTopLayout',
-  components: {
-    // NavigationMenu,
-    HeaderControl,
-    MainContent
-  }
-}
-</script>
 
 <style lang="less" scoped>
   .basic-layout {

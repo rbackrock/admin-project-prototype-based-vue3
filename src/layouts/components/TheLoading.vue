@@ -1,3 +1,6 @@
+<script setup>
+</script>
+
 <template>
   <div class="wrap">
     <div class="loading">
@@ -8,9 +11,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-</script>
 
 <style lang="less" scoped>
   @width: 15px;

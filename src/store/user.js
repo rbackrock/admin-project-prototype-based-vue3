@@ -16,26 +16,14 @@ export const useUserStore = defineStore('user', {
   },
 
   actions: {
-    async getUser() {
-      try {
-        const { data } = await api.queryUser()
-        this.user = data
-  
-        return Promise.resolve()
-      } catch (error) {
-        return Promise.reject(error)
-      }
+    async fetchUser() {
+      const { data } = await api.queryUser()
+      this.user = data
     },
 
-    async rule() {
-      try {
-        const { data } = await api.queryRule()
-        this.rule = data
-  
-        return Promise.resolve()
-      } catch (error) {
-        return Promise.reject(error)
-      }
+    async fetchRule() {
+      const { data } = await api.queryRule()
+      this.rule = data
     },
 
     emptyUser() {

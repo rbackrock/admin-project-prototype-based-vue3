@@ -27,16 +27,11 @@ export const useAuthStore = defineStore('auth', {
     },
 
     async logout() {
-      try {
-        const userStore = useUserStore()
-        userStore.emptyUser()
-        this.token = null
-        // TODO 可能要调用一些借口
-        auth.clearEnduranceTokenOfStorage()
-        return Promise.resolve()
-      } catch (error) {
-        return Promise.reject(error)
-      }
+      const userStore = useUserStore()
+      userStore.emptyUser()
+      this.token = null
+      // TODO 可能要调用一些借口
+      auth.clearEnduranceTokenOfStorage()
     }
   }
 })
