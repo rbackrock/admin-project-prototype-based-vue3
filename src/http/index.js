@@ -1,6 +1,8 @@
 import axios from 'axios'
+import { createPinia } from 'pinia'
 import { message, notification } from 'ant-design-vue'
-import store from '/@/store'
+// import store from '/@/store'
+import { useAuthStore } from '/@/store/auth'
 import router from '/@/router'
 import { businessCodeStatus, httpCodeStatus } from './consts'
 
@@ -11,7 +13,9 @@ const axiosInstance = axios.create({
 })
 
 axiosInstance.interceptors.request.use((config) => {
-  config.headers.Authorization = store.getters['auth/token']
+  createPinia()
+  const authStore = useAuthStore()
+  config.headers.Authorization = authStore.token
   config.headers['Content-Type'] = 'application/json'
 
   return config

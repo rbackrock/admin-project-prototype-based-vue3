@@ -20,7 +20,9 @@
 
 <script>
 import { computed } from 'vue'
-import { useStore } from 'vuex'
+import { useSettingsStore } from '/@/store/settings'
+import { useAuthStore } from '/@/store/auth'
+import { useUserStore } from '/@/store/user'
 import { useRouter } from 'vue-router'
 import {
   DownOutlined,
@@ -37,13 +39,15 @@ export default {
     UserOutlined
   },
   setup() {
-    const store = useStore()
+    const settingsStore = useSettingsStore()
+    const authStore = useAuthStore()
+    const userStore = useUserStore()
     const router = useRouter()
-    const userInfo = computed(() => store.state.user.user)
-    const isSiderLayout = computed(() => store.getters['settings/isMenuLayout'](layoutType.SIDE_MENU))
+    const userInfo = computed(() => userStore.userInfo)
+    const isSiderLayout = computed(() => settingsStore.isMenuLayout(layoutType.SIDE_MENU))
 
     const handleLogout = () => {
-      store.dispatch('auth/logout').then(() => {
+      authStore.logout().then(() => {
         router.replace({
           name: 'Login'
         })

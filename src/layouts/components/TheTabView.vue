@@ -44,7 +44,7 @@
 
 <script>
 import { computed } from 'vue'
-import { useStore } from 'vuex'
+import { useTabViewsStore } from '/@/store/tab-views'
 import { MoreOutlined, CloseOutlined, ReloadOutlined } from '@ant-design/icons-vue'
 import useTabView from '../composables/useTabView'
 import useBreadcrumb from '../composables/useBreadcrumb'
@@ -57,13 +57,13 @@ export default {
     ReloadOutlined
   },
   setup() {
-    const store = useStore()
+    const tabViewsStore = useTabViewsStore()
     useTabView()
     const { breadcrumbList } = useBreadcrumb()
 
     return {
-      tabList: computed(() => store.state['tab-views'].cacheViews),
-      tabActiveKey: computed(() => store.state['tab-views'].activeViewKey),
+      tabList: computed(() => tabViewsStore.cacheViews),
+      tabActiveKey: computed(() => tabViewsStore.activeViewKey),
       breadcrumbList
     }
   },
@@ -88,25 +88,25 @@ export default {
     },
 
     handleChangeTab(activeRouteName) {
-      this.$store.dispatch('tab-views/active', activeRouteName)
+      tabViewsStore.active(activeRouteName)
       this.$router.push({
         name: activeRouteName
       })
     },
 
     handleCloseCurrent(pane) {
-      this.$store.dispatch('tab-views/closeCurrentTabView', pane.routeName)
-      const lastCacheViewKey = this.$store.getters['tab-views/getLastCacheViewKey']
+      tabViewsStore.closeCurrentTabView(pane.routeName)
+      const lastCacheViewKey = tabViewsStore.getLastCacheViewKey
       this.$router.push({
         name: lastCacheViewKey
       })
     },
 
     handleCloseOther(pane) {
-      const routeName = pane.routeName || this.$store.getters['tab-views/currentActiveViewKey']
+      const routeName = pane.routeName || tabViewsStore.currentActiveViewKey
       this.$store.dispatch('tab-views/closeOtherTabViews', routeName)
-      const lastCacheViewKey = this.$store.getters['tab-views/getLastCacheViewKey']
-      const currentActiveViewKey = this.$store.getters['tab-views/currentActiveViewKey']
+      const lastCacheViewKey = tabViewsStore.getLastCacheViewKey
+      const currentActiveViewKey = tabViewsStore.currentActiveViewKey
       if (lastCacheViewKey !== currentActiveViewKey) {
         this.$router.push({
           name: lastCacheViewKey
@@ -115,8 +115,8 @@ export default {
     },
 
     handleCloseAllToTheLeft(pane) {
-      this.$store.dispatch('tab-views/closeAllToTheLeft', pane.routeName)
-      const currentActiveViewKey = this.$store.getters['tab-views/currentActiveViewKey']
+      tabViewsStore.closeAllToTheLeft(pane.routeName)
+      const currentActiveViewKey = tabViewsStore.currentActiveViewKey
       if (pane.routeName !== currentActiveViewKey) {
         this.$router.push({
           name: pane.routeName
@@ -126,7 +126,7 @@ export default {
 
     handleCloseAllToTheRight(pane) {
       this.$store.dispatch('tab-views/closeAllToTheRight', pane.routeName)
-      const currentActiveViewKey = this.$store.getters['tab-views/currentActiveViewKey']
+      const currentActiveViewKey = tabViewsStore.currentActiveViewKey
       if (pane.routeName !== currentActiveViewKey) {
         this.$router.push({
           name: pane.routeName

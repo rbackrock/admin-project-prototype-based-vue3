@@ -16,7 +16,7 @@
 
 <script>
 import { computed } from 'vue'
-import { useStore } from 'vuex'
+import { useTabViewsStore } from '/@/store/tab-views'
 import { MoreOutlined, CloseOutlined, ReloadOutlined } from '@ant-design/icons-vue'
 import TabView from './TheTabView.vue'
 
@@ -29,9 +29,9 @@ export default {
     TabView
   },
   setup() {
-    const store = useStore()
+    const tabViewsStore = useTabViewsStore()
     return {
-      cacheTabView: computed(() => store.state['tab-views'].cacheViewsKeys)
+      cacheTabView: computed(() => tabViewsStore.cacheViewsKeys)
     }
   }
 }

@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 
 import router from './router'
-import store from './store'
+import { createPinia } from 'pinia'
 import permission from '/@/directive/permission'
 
 import '/@/theme/default/index.less'
@@ -10,7 +10,7 @@ import '/@/theme/default/index.less'
 // import './theme/deep-blue/index.less'
 
 createApp(App)
-  .use(store)
+  .use(createPinia())
   .use(router)
   .use(permission)
   .mount('#app')

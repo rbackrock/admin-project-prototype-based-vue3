@@ -1,6 +1,7 @@
 import { onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { useStore } from 'vuex'
+import { useSystemStore } from '/@/store/system'
+import { useTabViewsStore } from '/@/store/tab-views'
 
 function makeTabRouteMenu(routeMatched = [], navigationOnlyMenuFlat = []) {
   let routeMenu = null
@@ -22,26 +23,28 @@ function makeTabRouteMenu(routeMatched = [], navigationOnlyMenuFlat = []) {
 
 export default function useTabView() {
   const route = useRoute()
-  const store = useStore()
+  const systemStore = useSystemStore()
+  const tabViewsStore = useTabViewsStore()
 
   onMounted(() => {
     const routeMatched = route.matched
-    const navigationOnlyMenuFlat = store.getters['system/navigationOnlyMenuFlat']
+    const navigationOnlyMenuFlat = systemStore.navigationOnlyMenuFlat
     const routeMenu = makeTabRouteMenu(routeMatched, navigationOnlyMenuFlat)
     if (routeMenu) {
-      store.dispatch('tab-views/init')
-      store.dispatch('tab-views/add', routeMenu)
-      store.dispatch('tab-views/active', routeMenu.routeName)
+      tabViewsStore.init()
+      tabViewsStore.add(routeMenu)
+      tabViewsStore.active(routeMenu.routeName)
     }
   })
 
   watch(route, (viewRoute) => {
     const routeMatched = viewRoute.matched
-    const navigationOnlyMenuFlat = store.getters['system/navigationOnlyMenuFlat']
+    const navigationOnlyMenuFlat = systemStore.navigationOnlyMenuFlat
     const routeMenu = makeTabRouteMenu(routeMatched, navigationOnlyMenuFlat)
+
     if (routeMenu) {
-      store.dispatch('tab-views/add', routeMenu)
-      store.dispatch('tab-views/active', routeMenu.routeName)
+      tabViewsStore.add(routeMenu)
+      tabViewsStore.active(routeMenu.routeName)
     }
   })
 }

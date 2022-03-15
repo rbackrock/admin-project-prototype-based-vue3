@@ -3,7 +3,7 @@ import {
   watch,
   onMounted
 } from 'vue'
-import { useStore } from 'vuex'
+import { useSystemStore } from '/@/store/system'
 import { useRoute } from 'vue-router'
 
 /**
@@ -31,9 +31,9 @@ function findCurrentMenuKeys(routeMatched = [], navigationOnlyMenuFlat = []) {
 
 export default function useHighlightMenu() {
   const route = useRoute()
-  const store = useStore()
+  const systemStore = useSystemStore()
   const selectedMenuKeys = ref([])
-  const navigationOnlyMenuFlat = store.getters['system/navigationOnlyMenuFlat']
+  const navigationOnlyMenuFlat = systemStore.navigationOnlyMenuFlat
 
   onMounted(() => {
     const currentMenuKeys = findCurrentMenuKeys(route.matched, navigationOnlyMenuFlat)

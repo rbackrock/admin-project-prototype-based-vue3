@@ -4,7 +4,7 @@ import {
   onMounted,
   onDeactivated
 } from 'vue'
-import { useStore } from 'vuex'
+import { useSystemStore } from '/@/store/system'
 import * as consts from '/@/consts'
 
 async function reBuildMenu(menuRef, menuLiWidth, navigationMenu, store) {
@@ -32,9 +32,11 @@ async function reBuildMenu(menuRef, menuLiWidth, navigationMenu, store) {
 }
 
 export default function useBuildMenu() {
-  const store = useStore()
-  const navigationMenu = ref(store.getters['system/navigationMenu']) // computed(() => store.state.system.navigationMenu)
-  const navigationMenuMapper = store.getters['system/getDictionaryTypeMapper']('navigationMenuType')
+  const systemStore = useSystemStore()
+
+  const navigationMenu = ref(systemStore.navigationMenu)
+  const navigationMenuMapper = systemStore.getDictionaryTypeMapper('navigationMenuType')
+
   // top layout 使用
   const menuLiWidth = []
   const menuRef = ref(null)

@@ -2,6 +2,7 @@
   "name": "admin-project-prototype-based-vue3",
   "private": true,
   "version": "0.0.0",
+  "author": "yhuan",
   "scripts": {
     "dev:mock": "node mock/server NODE_ENV=development",
     "dev": "vite",
@@ -15,6 +16,7 @@
     "jsencrypt": "^3.2.1",
     "lodash": "^4.17.21",
     "nprogress": "^0.2.0",
+    "pinia": "^2.0.11",
     "qs": "^6.10.3",
     "vue": "^3.2.25",
     "vue-router": "^4.0.13",

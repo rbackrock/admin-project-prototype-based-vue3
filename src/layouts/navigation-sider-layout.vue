@@ -44,6 +44,7 @@
 <script>
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
+import { useSettingsStore } from '/@/store/settings'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
 import { themeConsts } from '/@/consts'
 // import NavigationMenu from './components/TheNavigationMenu.vue'
@@ -60,13 +61,14 @@ export default {
     MainContent
   },
   setup() {
-    const store = useStore()
+    // const store = useStore()
+    const settingsStore = useSettingsStore()
     const collapsed = ref(false)
 
     return {
       collapsed,
       themeConsts,
-      themeType: computed(() => store.getters['settings/theme'])
+      themeType: computed(() => settingsStore.theme /*store.getters['settings/theme']*/)
     }
   }
 }

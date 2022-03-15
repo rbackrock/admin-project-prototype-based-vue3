@@ -9,10 +9,7 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'Loading'
-}
+<script setup>
 </script>
 
 <style lang="less" scoped>

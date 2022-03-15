@@ -3,9 +3,9 @@
   import { useRouter } from 'vue-router'
   import { throttle } from '/@/utils/helper'
   import _ from 'lodash'
-  import { useStore } from 'vuex'
+  import { useAuthStore } from '/@/store/auth'
 
-  const store = useStore()
+  const authStore = useAuthStore()
   const router = useRouter()
 
   const loginForm = reactive({
@@ -16,15 +16,13 @@
 
   const handleLogin = throttle(function (...values) {
     loading.value = true
-    store.dispatch('auth/login', {
+    authStore.login({
       username: loginForm.username,
       password: loginForm.password
     }).then(() => {
       router.replace({
         name: 'Home'
       })
-    }, () => {
-      loading.value = false
     })
   }, getCurrentInstance().proxy)
 </script>
