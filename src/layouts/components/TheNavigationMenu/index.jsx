@@ -13,6 +13,7 @@ import {
 import useBuildMenu from '../../composables/useBuildMenu'
 import useHighlightMenu from '../../composables/useHighlightMenu'
 import useOpenMenuKeysRepositories from '../../composables/useOpenMenuKeysRepositories'
+import './index.less'
 
 const MenuIcon = (props, context) => (
   props.icon(props, context)
@@ -31,7 +32,7 @@ const MenuSlot = (props) => {
   )
 }
 
-const MainMenu = (props) => {
+const MenuContainer = (props) => {
   const router = useRouter()
   const navigationMenu = props.menu
   const navigationMapper = props.navigationMenuMapper
@@ -44,7 +45,7 @@ const MainMenu = (props) => {
             key={navigation.routeName}
             v-slots={{ title: () => <MenuSlot navigation={navigation} /> }}
           >
-            <MainMenu menu={ navigation.children } navigationMenuMapper={ navigationMapper } />
+            <MenuContainer menu={ navigation.children } navigationMenuMapper={ navigationMapper } />
           </SubMenu>
         )
       }
@@ -55,7 +56,7 @@ const MainMenu = (props) => {
             key={navigation.routeName}
             v-slots={{ title: () => <MenuSlot navigation={navigation} /> }}
           >
-            <MainMenu menu={ navigation.children } navigationMenuMapper={ navigationMapper } />
+            <MenuContainer menu={ navigation.children } navigationMenuMapper={ navigationMapper } />
           </MenuItemGroup>
         )
       }
@@ -96,7 +97,7 @@ export default {
         mode="inline"
         v-models={[[selectedMenuKeys.value, 'selectedKeys'], [openMenuKeys.value, 'openKeys']]}
       >
-        <MainMenu ref={ menuRef } menu={ navigationMenu.value } navigationMenuMapper={ navigationMenuMapper } />
+        <MenuContainer ref={ menuRef } menu={ navigationMenu.value } navigationMenuMapper={ navigationMenuMapper } />
       </Menu>
     )
   }
