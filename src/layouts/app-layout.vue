@@ -1,5 +1,6 @@
 <script setup>
   import { ref, onMounted, computed } from 'vue'
+  import { useRoute } from 'vue-router'
 
   import { useSystemStore } from '/@/store/system'
   import { useUserStore } from '/@/store/user'
@@ -11,6 +12,8 @@
   import NavigationTopLayout from './navigation-top-layout.vue'
   import NavigationMixLayout from './navigation-mix-layout.vue'
 
+  const route = useRoute()
+
   const systemStore = useSystemStore()
   const userStore = useUserStore()
   const settingsStore = useSettingsStore()
@@ -20,6 +23,8 @@
 
   onMounted(async () => {
     const user = userStore.userInfo
+
+    console.log(route)
 
     if (!user) {
       try {

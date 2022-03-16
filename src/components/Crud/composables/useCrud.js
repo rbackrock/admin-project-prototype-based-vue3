@@ -6,7 +6,7 @@ import {
 } from 'vue'
 import _ from 'lodash'
 import { Form } from 'ant-design-vue'
-import * as consts from '@/components/Crud/consts'
+import * as consts from '/@/components/Crud/consts'
 
 const { useForm } = Form
 

@@ -82,116 +82,116 @@ const home = [
 
 // 系统路由
 const system = [
-  // {
-  //   path: '/system',
-  //   name: 'System',
-  //   meta: {
-  //   },
-  //   component: AppLayout,
-  //   redirect: {
-  //     name: 'SystemDataDictionary'
-  //   },
-  //   children: [
-  //     {
-  //       path: 'data-dictionary',
-  //       name: 'SystemDataDictionary',
-  //       meta: {
-  //       },
-  //       component: () => import('/@/views/system/data-dictionary')
-  //     },
-  //     {
-  //       path: 'menu',
-  //       name: 'SystemMenu',
-  //       meta: {
-  //       },
-  //       component: () => import('/@/views/system/menu')
-  //     },
-  //     {
-  //       path: 'role',
-  //       name: 'SystemRole',
-  //       meta: {
-  //       },
-  //       component: () => import('/@/views/system/rule')
-  //     }
-  //   ]
-  // }
+  {
+    path: '/system',
+    name: 'System',
+    meta: {
+    },
+    component: AppLayout,
+    redirect: {
+      name: 'SystemDataDictionary'
+    },
+    children: [
+      {
+        path: 'data-dictionary',
+        name: 'SystemDataDictionary',
+        meta: {
+        },
+        component: () => import('/@/views/system/data-dictionary/index.vue')
+      },
+      {
+        path: 'menu',
+        name: 'SystemMenu',
+        meta: {
+        },
+        component: () => import('/@/views/system/menu/index.vue')
+      },
+      {
+        path: 'role',
+        name: 'SystemRole',
+        meta: {
+        },
+        component: () => import('/@/views/system/rule/index.vue')
+      }
+    ]
+  }
 ]
 
 // example 路由
 const example = [
-  // {
-  //   path: '/example',
-  //   name: 'Example',
-  //   meta: {
-  //   },
-  //   component: AppLayout,
-  //   redirect: {
-  //     name: 'ExampleCrud'
-  //   },
-  //   children: [
-  //     {
-  //       path: 'crud',
-  //       name: 'ExampleCrud',
-  //       meta: {
-  //       },
-  //       component: () => import('/@/views/example/crud')
-  //     },
-  //     {
-  //       path: 'shared-store',
-  //       name: 'ExampleSharedStore',
-  //       meta: {
-  //       },
-  //       component: () => import('/@/views/example/shared-store-crud')
-  //     },
-  //     {
-  //       path: 'permission',
-  //       name: 'ExamplePermission',
-  //       meta: {
-  //       },
-  //       component: () => import('/@/views/example/permission')
-  //     },
-  //     {
-  //       path: 'deep',
-  //       name: 'ExampleDeep',
-  //       meta: {
-  //       },
-  //       component: () => import('/@/views/example/deep')
-  //     },
-  //     {
-  //       path: 'group-menu',
-  //       name: 'ExampleGroupMenu',
-  //       meta: {
-  //       },
-  //       component: () => import('/@/views/example/group')
-  //     },
-  //     {
-  //       path: 'nested',
-  //       name: 'ExampleNested',
-  //       meta: {
-  //       },
-  //       component: () => import('/@/views/example/nested/layout'),
-  //       redirect: {
-  //         name: 'ExampleNestedList'
-  //       },
-  //       children: [
-  //         {
-  //           path: 'list',
-  //           name: 'ExampleNestedList',
-  //           meta: {
-  //           },
-  //           component: () => import('/@/views/example/nested/list')
-  //         },
-  //         {
-  //           path: 'detail',
-  //           name: 'ExampleNestedDetail',
-  //           meta: {
-  //           },
-  //           component: () => import('/@/views/example/nested/detail')
-  //         }
-  //       ]
-  //     }
-  //   ]
-  // }
+  {
+    path: '/example',
+    name: 'Example',
+    meta: {
+    },
+    component: AppLayout,
+    redirect: {
+      name: 'ExampleCrud'
+    },
+    children: [
+      {
+        path: 'crud',
+        name: 'ExampleCrud',
+        meta: {
+        },
+        component: () => import('/@/views/example/crud/index.vue')
+      },
+      {
+        path: 'shared-store',
+        name: 'ExampleSharedStore',
+        meta: {
+        },
+        component: () => import('/@/views/example/shared-store-crud/index.vue')
+      },
+      {
+        path: 'permission',
+        name: 'ExamplePermission',
+        meta: {
+        },
+        component: () => import('/@/views/example/permission/index.vue')
+      },
+      {
+        path: 'deep',
+        name: 'ExampleDeep',
+        meta: {
+        },
+        component: () => import('/@/views/example/deep/index.vue')
+      },
+      {
+        path: 'group-menu',
+        name: 'ExampleGroupMenu',
+        meta: {
+        },
+        component: () => import('/@/views/example/group/index.vue')
+      },
+      {
+        path: 'nested',
+        name: 'ExampleNested',
+        meta: {
+        }, 
+        component: () => import('/@/views/example/nested/layout.vue'),
+        redirect: {
+          name: 'ExampleNestedList'
+        },
+        children: [
+          {
+            path: 'list',
+            name: 'ExampleNestedList',
+            meta: {
+            },
+            component: () => import('/@/views/example/nested/list.vue')
+          },
+          {
+            path: 'detail',
+            name: 'ExampleNestedDetail',
+            meta: {
+            },
+            component: () => import('/@/views/example/nested/detail.vue')
+          }
+        ]
+      }
+    ]
+  }
 ]
 
 const requiresAuthRoutes = [

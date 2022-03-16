@@ -2,6 +2,8 @@ import {
   ref
 } from 'vue'
 import { useRoute } from 'vue-router'
+import { useSettingsStore } from '/@/store/settings'
+import { useSystemStore } from '/@/store/system'
 import * as consts from '/@/consts'
 import * as utils from '/@/utils/helper'
 
@@ -24,14 +26,15 @@ function findParentMenuKeys(navigationPath = [], catelogTypeValue) {
 
 export default function useOpenMenuKeysRepositories() {
   const route = useRoute()
-  const store = useStore()
+  const settingsStore = useSettingsStore()
+  const systemStore = useSystemStore()
   const openMenuKeys = ref([])
 
-  if (store.state.settings.layoutType === consts.layoutType.SIDE_MENU
-  || store.state.settings.layoutType === consts.layoutType.MIX_MENU) {
+  if (settingsStore.layoutType === consts.layoutType.SIDE_MENU
+  || settingsStore.layoutType === consts.layoutType.MIX_MENU) {
     openMenuKeys.value = findParentMenuKeys(
-      utils.findTreeNodePath(store.state.system.navigationMenu, 'routeName', route.name),
-      store.getters['system/getDictionaryValue']('navigationMenuType', 'catalog')
+      utils.findTreeNodePath(systemStore.navigationMenu, 'routeName', route.name),
+      systemStore.getDictionaryValue('navigationMenuType', 'catalog')
     )
   }
 

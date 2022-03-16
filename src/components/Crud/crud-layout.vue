@@ -1,10 +1,11 @@
 <script setup>
-  import { ref } from 'vue'
-  import * as crudConsts from '@/components/Crud/consts'
+  import { ref, useSlots } from 'vue'
 
-  const hasSearchLayout = ref('search-layout' in context.slots)
-  const hasContentLayout = ref('content-layout' in context.slots)
-  const hasFormLayout = ref('form-layout' in context.slots)
+  const slots = useSlots()
+
+  const hasSearchLayout = ref('search-layout' in slots)
+  const hasContentLayout = ref('content-layout' in slots)
+  const hasFormLayout = ref('form-layout' in slots)
 </script>
 
 <template>
@@ -14,7 +15,6 @@
   >
     <a-card :bordered="true">
       <slot
-        :crudConsts="crudConsts"
         name="search-layout"
       />
     </a-card>
@@ -25,19 +25,15 @@
   >
     <a-card :bordered="true">
       <slot
-        :crudConsts="crudConsts"
         name="content-layout"
       />
     </a-card>
   </div>
   <slot
     v-if="hasFormLayout"
-    :crudConsts="crudConsts"
     name="form-layout"
   />
-  <slot
-    :crudConsts="crudConsts"
-  />
+  <slot />
 </template>
 
 <style lang="less" scoped>

@@ -5,6 +5,7 @@ import {
   onDeactivated
 } from 'vue'
 import { useSystemStore } from '/@/store/system'
+import { useSettingsStore } from '/@/store/settings'
 import * as consts from '/@/consts'
 
 async function reBuildMenu(menuRef, menuLiWidth, navigationMenu, store) {
@@ -42,7 +43,7 @@ export default function useBuildMenu() {
   const menuRef = ref(null)
 
   onMounted(async () => {
-    if (store.state.settings.layoutType === consts.layoutType.TOP_MENU) {
+    if (useSettingsStore.layoutType === consts.layoutType.TOP_MENU) {
       await nextTick()
       const liNodes = menuRef.value.parentElement.querySelectorAll('li')
       for (let i = 0; i < liNodes.length; i++) {

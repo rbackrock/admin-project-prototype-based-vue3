@@ -1,7 +1,7 @@
 <script setup>
   import { ref } from 'vue'
   import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
-  // import NavigationMenu from './components/TheNavigationMenu.vue'
+  import NavigationMenu from './components/TheNavigationMenu/index.jsx'
   import HeaderControl from './components/TheHeaderControl.vue'
   import MainContent from './components/TheMainContent.vue'
 
@@ -39,6 +39,7 @@
       >
         <div class="navigation">
           <!-- <navigation-menu theme="light" /> -->
+          <NavigationMenu theme="light" />
         </div>
         <div class="bottom-link">
           <menu-unfold-outlined

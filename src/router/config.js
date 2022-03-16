@@ -57,7 +57,9 @@ router.beforeEach(async (to) => {
     }
   }
 
-  return hasAuthRoute(systemStore, to)
+  console.log(to)
+
+  return true //hasAuthRoute(systemStore, to)
 })
 
 // 后置
