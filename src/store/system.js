@@ -6,13 +6,21 @@ import {
   getNavigationOnlyMenuFlat,
   getNavigationFlat
 } from '/@/router/helper'
+import { useUserStore } from './user'
 
 export const useSystemStore = defineStore('system', {
   state: () => {
     return {
+      // 导航菜单
       navigationMenu: [],
+      // 是否成功请求导航菜单
+      isFetchNavigationMenu: false,
+      // 扁平化用户有权限的导航菜单
       requiresAuthMenuOfKeys: [],
-      dictionary: []
+      // 字典数据
+      dictionary: [],
+      // 是否成功请求字典数据
+      isFetchDictionary: false
     }
   },
 
@@ -41,7 +49,14 @@ export const useSystemStore = defineStore('system', {
 
     getDictionaryValue: (state) => (dictionaryTypeName, codeName) => state.dictionary[dictionaryTypeName].code[codeName].codeValue,
 
-    getDictionaryTypeMapper: (state) => (dictionaryTypeName) => state.dictionary[dictionaryTypeName].code
+    getDictionaryTypeMapper: (state) => (dictionaryTypeName) => state.dictionary[dictionaryTypeName].code,
+
+    // 是否准备好了系统数据
+    // 包含，系统菜单数据，字典数据，用户数据，用户权限数据
+    isReadySystemData(state) {
+      const userStore = useUserStore()
+      return state.isFetchNavigationMenu && state.isFetchDictionary && userStore.isFetchUser && userStore.isFetchRule
+    }
   },
 
   actions: {
@@ -49,6 +64,7 @@ export const useSystemStore = defineStore('system', {
       const { data } = await api.queryMenu()
       this.navigationMenu = makeNavigationMenu(data)
       this.requiresAuthMenuOfKeys = getRspMenuTableKeys(data)
+      this.isFetchNavigationMenu = true
 
       return data
     },
@@ -74,6 +90,7 @@ export const useSystemStore = defineStore('system', {
         }
       }
       this.dictionary = dictionary
+      this.isFetchDictionary = true
 
       return data
     }

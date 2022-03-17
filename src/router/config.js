@@ -7,19 +7,21 @@ import router from './creactor'
 
 NProgress.configure({ showSpinner: false })
 
-// 获取到用户信息以后，进行授权判断
-function hasAuthRoute(systemStore, to) {
+// 白名单权限判断，在此白名单不用任何验证
+function hasAuthForWhiteList(systemStore, to) {
   const whitelist = [
-    'Home',
+    'Login',
     'NotFound',
-    'ServerError'
+    'ServerError',
+    'AuthError',
+    'Loading'
   ]
 
-  if (whitelist.indexOf(to.name) !== -1 || to.meta.requiresAuth === false) {
+  if (whitelist.indexOf(to.name) !== -1) {
     return true
   }
 
-  return to.name in systemStore.authMenuKeys
+  return false
 }
 
 /**
@@ -36,8 +38,19 @@ router.beforeEach(async (to) => {
   const token = authStore.token
   const user = userStore.userInfo
 
-  // 没有令牌，如果这个页面不需要验证，就正常路由
-  if (!token && 'requiresAuth' in to.meta && to.meta.requiresAuth === false) {
+  // 如果成功登录但是非要访问登录页面，那就跳转到 loading 页面去获取系统基本数据，获取完跳转 Home 页面
+  if (token && to.name === 'Login' && !systemStore.isReadySystemData) {
+    return {
+      name: 'Loading',
+      replace: true,
+      query: {
+        routeName: 'Home'
+      }
+    }
+  }
+
+  // 如果是白名单列表中的路由就放行
+  if (hasAuthForWhiteList(systemStore, to)) {
     return true
   }
 
@@ -49,17 +62,26 @@ router.beforeEach(async (to) => {
     }
   }
 
-  // 获取系统基本信息在 app-layout.vue 里做
-  if (!user && to.name === 'Login') {
+  // 如果没有获取后端菜单的数据，就跳到 loading 页面进行数据准备
+  if (!systemStore.isReadySystemData) {
     return {
-      name: 'Home',
-      replace: true
+      name: 'Loading',
+      replace: true,
+      query: {
+        routeName: to.name
+      }
     }
   }
 
-  console.log(to)
-
-  return true //hasAuthRoute(systemStore, to)
+  // 如果路由判断到这里就说明已经准备好了系统最基本的数据，可以进行菜单权限判断
+  if (to.name in systemStore.authMenuKeys) {
+    return true
+  } else {
+    return {
+      name: 'AuthError',
+      replace: true
+    }
+  }
 })
 
 // 后置

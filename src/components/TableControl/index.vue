@@ -59,15 +59,15 @@
 
   function handleRefresh() {
     emit('refresh')
-    reloadSpin = true
+    reloadSpin.value = true
     window.setTimeout(() => {
-      reloadSpin = false
+      reloadSpin.value = false
     }, 1000)
   }
 
   function handleCheckAllChangeColumnsChecked(evt) {
-    columnsCheckedList = evt.target.checked === true ? defaultCheckedList : []
-    allColumnsCheckedIndeterminate = false
+    columnsCheckedList.value = evt.target.checked === true ? defaultCheckedList : []
+    allColumnsCheckedIndeterminate.value = false
   }
 
   function handleChangeTableSize(size) {
@@ -75,8 +75,8 @@
   }
 
   function handleResetColumnsChecked() {
-    columnsCheckedList = defaultCheckedList
-    allColumnsCheckedIndeterminate = false
+    columnsCheckedList.value = defaultCheckedList
+    allColumnsCheckedIndeterminate.value = false
   }
 </script>
 

@@ -5,7 +5,9 @@ export const useUserStore = defineStore('user', {
   state: () => {
     return {
       user: null,
-      rule: []
+      isFetchUser: false,
+      rule: [],
+      isFetchRule: false
     }
   },
 
@@ -19,11 +21,13 @@ export const useUserStore = defineStore('user', {
     async fetchUser() {
       const { data } = await api.queryUser()
       this.user = data
+      this.isFetchUser = true
     },
 
     async fetchRule() {
       const { data } = await api.queryRule()
       this.rule = data
+      this.isFetchRule = true
     },
 
     emptyUser() {

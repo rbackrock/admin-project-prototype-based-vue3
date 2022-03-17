@@ -1,4 +1,32 @@
 <script setup>
+  import { onMounted } from 'vue'
+  import { useRoute, useRouter } from 'vue-router'
+  import { useSystemStore } from '/@/store/system'
+  import { useUserStore } from '/@/store/user'
+
+  const route = useRoute()
+  const router = useRouter()
+  const systemStore = useSystemStore()
+  const userStore = useUserStore()
+
+  const toRouteName = route.query.routeName
+
+  onMounted(async () => {
+    try {
+      await systemStore.buildNavigationMenu()
+      await systemStore.buildDictionary()
+      await userStore.fetchUser()
+      await userStore.fetchRule()
+
+      router.replace({
+        name: toRouteName
+      })
+    } catch (error) {
+      router.replace({
+        name: 'ServerError'
+      })
+    }
+  })
 </script>
 
 <template>

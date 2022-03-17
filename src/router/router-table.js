@@ -6,7 +6,9 @@
 import AppLayout from '/@/layouts/app-layout.vue'
 import NotFoundError from '/@/views/features/404.vue'
 import ServerError from '/@/views/features/500.vue'
+import AuthError from '/@/views/features/401.vue'
 import Login from '/@/views/login/index.vue'
+import Loading from '/@/views/features/loading.vue'
 import Home from '/@/views/home/index.vue'
 
 // 基本路由
@@ -28,9 +30,19 @@ const base = [
     }
   },
   {
+    path: '/401',
+    name: 'AuthError',
+    component: AuthError
+  },
+  {
     path: '/500',
     name: 'ServerError',
     component: ServerError
+  },
+  {
+    path: '/loading',
+    name: 'Loading',
+    component: Loading
   },
   {
     path: '/redirect',
