@@ -145,9 +145,14 @@
           </a-dropdown>
         </template>
       </a-tab-pane>
-      <template #tabBarExtraContent>
-        <a-dropdown>
-          <MoreOutlined class="dropdown-menu-btn" />
+      <template #rightExtra>
+        <a-dropdown
+          :trigger="['click']"
+          placement="bottom"
+        >
+          <div style="width: 110px; text-align: right;">
+            <MoreOutlined class="dropdown-menu-btn" />
+          </div>
 
           <template #overlay>
             <a-menu>
