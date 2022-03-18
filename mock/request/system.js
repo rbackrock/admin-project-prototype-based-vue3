@@ -27,6 +27,13 @@ module.exports = [
               children: []
             },
             {
+              routeName: 'ExampleTest',
+              title: 'Test',
+              uniqueTag: 'ExampleTest',
+              type: 'menu',
+              children: []
+            },
+            {
               routeName: 'ExampleSharedStore',
               title: '共享 Store 的 Crud',
               uniqueTag: 'ExampleSharedStore',

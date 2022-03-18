@@ -11,6 +11,7 @@ export default {
   SystemRole: StarOutlined,
   Example: StarOutlined,
   ExampleCrud: StarOutlined,
+  ExampleTest: StarOutlined,
   ExampleSharedStore: StarOutlined,
   ExamplePermission: StarOutlined,
   ExampleCatalog: StarOutlined,
