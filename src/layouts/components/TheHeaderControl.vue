@@ -29,7 +29,7 @@
 </script>
 
 <template>
-  <a-dropdown>
+  <a-dropdown placement="bottomRight">
     <span class="username-wrapper">
       <a :class="{'ant-dropdown-link': true, 'black': isSiderLayout }" @click.prevent>
         <UserOutlined />
