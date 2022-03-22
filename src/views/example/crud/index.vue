@@ -39,26 +39,25 @@
     ]
   }
 
-  const columns = [
-    {
-      title: '姓名',
-      dataIndex: 'name',
-      key: 'name'
-    },
-    {
-      title: '电子邮件',
-      dataIndex: 'email',
-      key: 'email'
-    },
-    {
-      title: '操作',
-      key: 'action',
-      width: '180px',
-      slots: {
-        customRender: 'action'
+  const tableOptions = reactive({
+    columns: [
+      {
+        title: '姓名',
+        dataIndex: 'name',
+        key: 'name'
+      },
+      {
+        title: '电子邮件',
+        dataIndex: 'email',
+        key: 'email'
+      },
+      {
+        title: '操作',
+        key: 'action'
       }
-    }
-  ]
+    ],
+    size: 'default'
+  })
 
   const crud = useCrud({
     [crudConsts.CRUD_SEARCH_INJECTION_FORM_MODEL]: searchFormModel,
@@ -72,11 +71,6 @@
   }, {
     hasPaging: false
   })
-  const tableOptions = reactive({
-    columns,
-    size: 'default'
-  })
-
   
   function handleAdd() {
     crud[crudConsts.CRUD_FUNCTION_OPEN_FORM_ADD]()
@@ -124,6 +118,23 @@
           </crud-search-form-item>
         </crud-search-form-item-wrapper>
       </a-form>
+    </template>
+
+    <template #content-layout>
+      <table-control
+        :table-options="tableOptions"
+        :has-add-button="true"
+        @add="handleAdd"
+        @refresh="query"
+      />
+      <a-table
+        :data-source="crud[crudConsts.CRUD_SEARCH_DATA]"
+        :loading="crud[crudConsts.CRUD_SEARCH_LOADING]"
+        :columns="tableOptions.columns"
+        :size="tableOptions.size"
+        row-key="id"
+        :pagination="{ 'show-size-changer': true }"
+      />
     </template>
 
     <!-- <template #content-layout>

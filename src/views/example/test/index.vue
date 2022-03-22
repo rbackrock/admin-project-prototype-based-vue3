@@ -3,6 +3,7 @@
   import CrudLayout from '/@/components/Crud/crud-layout.vue'
   // import TableControl from '/@/components/TableControl/index.vue'
   import TableControl from '/@/components/TableControl/control.vue'
+  import { throttle } from '/@/utils/helper'
 
   const tableOptions = reactive({
     columns: [
@@ -46,7 +47,7 @@
     <template #content-layout>
       <table-control
         :table-options="tableOptions"
-        :has-add-button="false"
+        :has-add-button="true"
         @add="onAdd"
         @refresh="onQuery"
       />
@@ -57,7 +58,7 @@
         :loading="false"
         :columns="tableOptions.columns"
         :size="tableOptions.size"
-        row-key="id"
+        row-key="key"
         :pagination="{ 'show-size-changer': true }"
       >
         <template #bodyCell="{ column, record }">
@@ -67,13 +68,6 @@
             </div>
           </template>
         </template>
-        <!-- <template #action="{ record }">
-          <table-record-control
-            :record="record"
-            @modify-record="handleModifyRecord"
-            @delete-record="handleDeleteRecord"
-          />
-        </template> -->
       </a-table>
     </template>
   </crud-layout>

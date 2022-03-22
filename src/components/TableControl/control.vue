@@ -28,8 +28,8 @@
   const originTableColumns = toRaw(props.tableOptions.columns)
   const columnsCheckedList = ref(originTableColumns.map(item => item.key))
 
-  watch(columnsCheckedList, (newColumnsCheckedList) => {
-    if (newColumnsCheckedList.length > 1) {
+  watch(columnsCheckedList, (newColumnsCheckedList, oldColumnsCheckedList) => {
+    if (newColumnsCheckedList.length > 0) {
       // 全选多框框有三种形态，没有选中的多选框情况，全部选中多选框的情况，选择其中一部分多选框的情况
       const originTableColumnsLength = originTableColumns.length
       allColumnsCheckedIndeterminate.value = !!newColumnsCheckedList.length && newColumnsCheckedList.length < originTableColumnsLength
@@ -42,6 +42,9 @@
       // change
       // eslint-disable-next-line vue/no-mutating-props
       props.tableOptions.columns = originTableColumns.filter((current) => newColumnsCheckedList.indexOf(current.key) !== -1)
+    } else {
+      // 当前的 antdv 版本，表格不允许没有表格列，所以至少要有一列
+      columnsCheckedList.value = [oldColumnsCheckedList[0]]
     }
   })
 
