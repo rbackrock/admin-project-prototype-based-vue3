@@ -91,6 +91,8 @@
   function query() {
     crud[crudConsts.CRUD_FUNCTION_QUERY]()
   }
+
+  console.log(crud[crudConsts.CRUD_SEARCH_DATA])
 </script>
 
 <template>
@@ -128,8 +130,8 @@
         @refresh="query"
       />
       <a-table
-        :data-source="crud[crudConsts.CRUD_SEARCH_DATA]"
-        :loading="crud[crudConsts.CRUD_SEARCH_LOADING]"
+        :data-source="crud[crudConsts.CRUD_SEARCH_DATA].value"
+        :loading="crud[crudConsts.CRUD_SEARCH_LOADING].value"
         :columns="tableOptions.columns"
         :size="tableOptions.size"
         row-key="id"
