@@ -2,8 +2,6 @@ import { useUserStore } from '/@/store/user'
 import _ from 'lodash'
 
 function permission(el, binding, vnode) {
-  console.log(binding)
-
   const {
     value,
     instance: vm,
