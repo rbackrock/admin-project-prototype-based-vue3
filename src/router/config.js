@@ -14,7 +14,9 @@ function hasAuthForWhiteList(systemStore, to) {
     'NotFound',
     'ServerError',
     'AuthError',
-    'Loading'
+    'Loading',
+    'Redirect',
+    'RedirectRoute'
   ]
 
   if (whitelist.indexOf(to.name) !== -1) {
