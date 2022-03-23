@@ -1,5 +1,5 @@
 <script setup>
-  import { ref } from 'vue'
+  import { ref, defineProps, defineEmits, computed } from 'vue'
 
   const INCLUDE_VIEW_NAME = 'view'
   const INCLUDE_MODIFY_NAME = 'modify'
@@ -101,7 +101,7 @@
       :disabled="disabledView"
       class="btn"
       type="link"
-      @click="$emit('view-record', record)"
+      @click="$emit('view-record', props.record)"
     >
       查看
     </a-button>
@@ -109,7 +109,7 @@
       v-else
       class="btn"
       type="link"
-      @click="$emit('view-record', record)"
+      @click="$emit('view-record', props.record)"
     >
       查看
     </a-button>
@@ -123,7 +123,7 @@
       :disabled="disabledModify"
       class="btn"
       type="link"
-      @click="$emit('modify-record', record)"
+      @click="$emit('modify-record', props.record)"
     >
       编辑
     </a-button>
@@ -131,7 +131,7 @@
       v-else
       class="btn"
       type="link"
-      @click="$emit('modify-record', record)"
+      @click="$emit('modify-record', props.record)"
     >
       编辑
     </a-button>
@@ -143,7 +143,7 @@
       :title="deleteMsg"
       ok-text="确定"
       cancel-text="取消"
-      @confirm="$emit('delete-record', record)"
+      @confirm="$emit('delete-record', props.record)"
     >
       <a-button
         v-if="permissionDelete && permissionDelete.length > 0"
