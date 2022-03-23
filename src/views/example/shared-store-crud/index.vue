@@ -24,10 +24,7 @@
     {
       title: '操作',
       key: 'action',
-      width: '180px',
-      slots: {
-        customRender: 'action'
-      }
+      width: '180px'
     }
   ]
 
@@ -55,7 +52,7 @@
 
 <template>
   <crud-layout>
-    <template #search-layout="{ crudConsts }">
+    <template #search-layout>
       <a-form>
         <crud-search-form-item-wrapper>
           <crud-search-form-item>
@@ -69,13 +66,21 @@
             </a-form-item>
           </crud-search-form-item>
           <crud-search-form-item>
-            <a-button type="primary" @click="query"><template #icon><SearchOutlined /></template>查询</a-button>
+            <a-button
+              type="primary"
+              @click="query"
+            >
+              <template #icon>
+                <SearchOutlined />
+              </template>
+              查询
+            </a-button>
           </crud-search-form-item>
         </crud-search-form-item-wrapper>
       </a-form>
     </template>
 
-    <template #content-layout="{ crudConsts }">
+    <template #content-layout>
       <table-control
         :table-options="tableOptions"
         @add="handleAdd"
@@ -89,12 +94,14 @@
         row-key="id"
         :pagination="{ 'show-size-changer': true }"
       >
-        <template #action="{ record }">
-          <table-record-control
-            :record="record"
-            @modify-record="handleModifyRecord"
-            @delete-record="handleDeleteRecord"
-          />
+        <template #bodyCell="{ column, record }">
+          <template v-if="column.key === 'action'">
+            <table-record-control
+              :record="record"
+              @modify-record="handleModifyRecord"
+              @delete-record="handleDeleteRecord"
+            />
+          </template>
         </template>
       </a-table>
     </template>

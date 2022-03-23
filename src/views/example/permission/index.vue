@@ -1,9 +1,9 @@
 <script setup>
   import { ref } from 'vue'
 
-  const disabledAdd = ref(false)
-  const disabledModify = ref(false)
-  const disabledDelete = ref(false)
+  const disabledAddVariable = ref(false)
+  const disabledModifyVariable = ref(false)
+  const disabledDeleteVariable = ref(false)
 </script>
 
 <template>
@@ -18,20 +18,20 @@
       <div>
         <a-space>
           <a-button
-            v-permission:disabledAdd.disabled="['add']" 
-            :disabled="disabledAdd"
+            v-permission-disable:disabledAddVariable="['add']" 
+            :disabled="disabledAddVariable"
           >
             新增
           </a-button>
           <a-button
-            v-permission:disabledModify.disabled="['modify']"
-            :disabled="disabledModify"
+            v-permission-disable:disabledModifyVariable="['modify']"
+            :disabled="disabledModifyVariable"
           >
             修改
           </a-button>
           <a-button
-            v-permission:disabledDelete.disabled="['delete']"
-            :disabled="disabledDelete"
+            v-permission-disable:disabledDeleteVariable="['delete']"
+            :disabled="disabledDeleteVariable"
           >
             删除
           </a-button>
@@ -42,13 +42,13 @@
       </h3>
       <div>
         <a-space>
-          <a-button v-permission.remove="['add']">
+          <a-button v-permission-remove="['add']">
             新增
           </a-button>
-          <a-button v-permission.remove="['modify']">
+          <a-button v-permission-remove="['modify']">
             修改
           </a-button>
-          <a-button v-permission.remove="['delete']">
+          <a-button v-permission-remove="['delete']">
             删除
           </a-button>
         </a-space>
