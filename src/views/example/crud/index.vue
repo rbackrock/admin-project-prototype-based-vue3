@@ -91,8 +91,6 @@
   function query() {
     crud[crudConsts.CRUD_FUNCTION_QUERY]()
   }
-
-  console.log(crud[crudConsts.CRUD_SEARCH_DATA])
 </script>
 
 <template>
@@ -136,32 +134,18 @@
         :size="tableOptions.size"
         row-key="id"
         :pagination="{ 'show-size-changer': true }"
-      />
-    </template>
-
-    <!-- <template #content-layout>
-      <table-control
-        :table-options="tableOptions"
-        @add="handleAdd"
-        @refresh="query"
-      />
-      <a-table
-        :data-source="crud[crudConsts.CRUD_SEARCH_DATA]"
-        :loading="crud[crudConsts.CRUD_SEARCH_LOADING]"
-        :columns="tableOptions.columns"
-        :size="tableOptions.size"
-        row-key="id"
-        :pagination="{ 'show-size-changer': true }"
       >
-        <template #action="{ record }">
-          <table-record-control
-            :record="record"
-            @modify-record="handleModifyRecord"
-            @delete-record="handleDeleteRecord"
-          />
+        <template #bodyCell="{ column, record }">
+          <template v-if="column.key === 'action'">
+            <table-record-control
+              :record="record"
+              @modify-record="handleModifyRecord"
+              @delete-record="handleDeleteRecord"
+            />
+          </template>
         </template>
       </a-table>
-    </template> -->
+    </template>
 
     <template #form-layout>
       <a-modal
