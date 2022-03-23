@@ -150,13 +150,6 @@ const example = [
         component: () => import('/@/views/example/crud/index.vue')
       },
       {
-        path: 'test',
-        name: 'ExampleTest',
-        meta: {
-        },
-        component: () => import('/@/views/example/test/index.vue')
-      },
-      {
         path: 'shared-store',
         name: 'ExampleSharedStore',
         meta: {
