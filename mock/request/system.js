@@ -61,7 +61,7 @@ module.exports = [
               ]
             },
             {
-              routeName: '',
+              routeName: 'ExampleCatalog',
               title: '多级目录',
               uniqueTag: 'ExampleCatalog',
               type: 'catalog',

@@ -10,7 +10,7 @@
       required: false,
       default() {
         return {
-          view: false,
+          view: true,
           modify: true,
           del: true
         }
@@ -97,7 +97,7 @@
   <template v-if="include.view">
     <a-button
       v-if="permissionView && permissionView.length > 0"
-      v-permission:disabledView.disabled="permissionView"
+      v-permission-disable:disabledView="permissionView"
       :disabled="disabledView"
       class="btn"
       type="link"
@@ -119,7 +119,7 @@
   <template v-if="include.modify">
     <a-button
       v-if="permissionModify && permissionModify.length > 0"
-      v-permission:disabledModify.disabled="permissionModify"
+      v-permission-disable:disabledModify="permissionModify"
       :disabled="disabledModify"
       class="btn"
       type="link"
@@ -147,7 +147,7 @@
     >
       <a-button
         v-if="permissionDelete && permissionDelete.length > 0"
-        v-permission:disabledDelete.disabled="permissionDelete"
+        v-permission-disable:disabledDelete="permissionDelete"
         :disabled="disabledDelete"
         class="btn"
         type="link"
