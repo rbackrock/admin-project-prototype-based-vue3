@@ -24,11 +24,8 @@
     {
       title: '操作',
       key: 'action',
-      width: '100px',
-      align: 'center',
-      slots: {
-        customRender: 'action'
-      }
+      width: '140px',
+      align: 'center'
     }
   ]
 
@@ -61,6 +58,8 @@
       codeCrud[crudConsts.CRUD_FUNCTION_QUERY]()
     }
   }
+
+  function handleSave() {}
 </script>
 
 <template>
@@ -78,12 +77,14 @@
     :size="tableOptions.size"
     :pagination="false"
   >
-    <template #action="{ record }">
-      <table-record-control
-        :record="record"
-        @modify-record="handleModifyRecord"
-        @delete-record="handleDeleteRecord"
-      />
+    <template #bodyCell="{ column, record }">
+      <template v-if="column.key === 'action'">
+        <table-record-control
+          :record="record"
+          @modify-record="handleModifyRecord"
+          @delete-record="handleDeleteRecord"
+        />
+      </template>
     </template>
   </a-table>
 

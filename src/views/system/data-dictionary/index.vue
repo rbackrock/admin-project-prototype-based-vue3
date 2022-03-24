@@ -20,17 +20,17 @@
 
 <template>
   <crud-layout>
-    <template #search-layout="{ crudConsts }">
+    <template #search-layout>
       <a-form>
         <crud-search-form-item-wrapper>
           <crud-search-form-item>
             <a-form-item label="字典类型">
-              <a-input v-model:value="crud[crudConsts.CRUD_SEARCH_FORM].value.typeName" />
+              <a-input v-model:value="crud[crudConsts.CRUD_SEARCH_FORM].typeName" />
             </a-form-item>
           </crud-search-form-item>
           <crud-search-form-item>
             <a-form-item label="字典名称">
-              <a-input v-model:value="crud[crudConsts.CRUD_SEARCH_FORM].value.typeDescription" />
+              <a-input v-model:value="crud[crudConsts.CRUD_SEARCH_FORM].typeDescription" />
             </a-form-item>
           </crud-search-form-item>
           <crud-search-form-item>

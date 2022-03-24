@@ -3,9 +3,3 @@
     rule
   </div>
 </template>
-
-<script>
-export default {
-  name: 'SystemRule'
-}
-</script>

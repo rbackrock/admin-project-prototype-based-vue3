@@ -19,11 +19,8 @@
     {
       title: '操作',
       key: 'action',
-      width: '100px',
-      align: 'center',
-      slots: {
-        customRender: 'action'
-      }
+      width: '140px',
+      align: 'center'
     }
   ]
 
@@ -71,12 +68,14 @@
     :pagination="{ 'show-size-changer': true }"
     :row-selection="{ type: 'radio', selectedRowKeys: selectedTypeId, onChange: handleTypeChange }"
   >
-    <template #action="{ record }">
-      <table-record-control
-        :record="record"
-        @modify-record="handleModifyRecord"
-        @delete-record="handleDeleteRecord"
-      />
+    <template #bodyCell="{ column, record }">
+      <template v-if="column.key === 'action'">
+        <table-record-control
+          :record="record"
+          @modify-record="handleModifyRecord"
+          @delete-record="handleDeleteRecord"
+        />
+      </template>
     </template>
   </a-table>
 
