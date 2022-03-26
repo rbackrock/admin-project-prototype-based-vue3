@@ -5,7 +5,7 @@ import Components from 'unplugin-vue-components/vite'
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
-const PROXY_REQUEST_BASE = 'http://localhost:8100'
+const PROXY_REQUEST_BASE = 'http://localhost:8000'
 
 export default defineConfig({
   plugins: [
