@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, watch, computed, toRaw } from 'vue'
+  import { reactive, ref, watch, computed, toRaw } from 'vue'
   import {
     PlusOutlined,
     ReloadOutlined,
@@ -16,6 +16,13 @@
       type: Boolean,
       required: false,
       default: true
+    },
+    permissionAdd: {
+      type: Array,
+      required: false,
+      default() {
+        return []
+      }
     }
   })
 
@@ -27,6 +34,9 @@
   const allColumnsCheckedIndeterminate = ref(false)
   const originTableColumns = toRaw(props.tableOptions.columns)
   const columnsCheckedList = ref(originTableColumns.map(item => item.key))
+  const disabledAddVariable = reactive({
+    disabled: false
+  })
 
   watch(columnsCheckedList, (newColumnsCheckedList, oldColumnsCheckedList) => {
     if (newColumnsCheckedList.length > 0) {
@@ -106,6 +116,8 @@
   <div class="a-table-control-container">
     <slot v-if="props.hasAddButton">
       <a-button
+        v-permission-disable:[disabledAddVariable]="props.permissionAdd"
+        :disabled="disabledAddVariable.disabled"
         type="primary"
         @click.stop="handleAdd"
       >

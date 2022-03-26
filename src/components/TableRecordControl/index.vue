@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, defineProps, defineEmits, computed } from 'vue'
+  import { ref, reactive, defineProps, defineEmits, computed } from 'vue'
 
   const INCLUDE_VIEW_NAME = 'view'
   const INCLUDE_MODIFY_NAME = 'modify'
@@ -51,8 +51,16 @@
   const disabledView = ref(false)
   const disabledModify = ref(false)
   const disabledDelete = ref(false)
-
   const emit = defineEmits(['view-record', 'modify-record', 'delete-record'])
+  const disabledViewVariable = reactive({
+    disabled: false
+  })
+  const disabledModifyVariable = reactive({
+    disabled: false
+  })
+  const disabledDeleteVariable = reactive({
+    disabled: false
+  })
 
   const visibleViewDivider = computed(() => {
     if (this.isHiddenSingleInclude(INCLUDE_VIEW_NAME)) {
@@ -92,77 +100,53 @@
 </script>
 
 <template>
-  <slot name="attach-control" />
-
-  <template v-if="include.view">
-    <a-button
-      v-if="permissionView && permissionView.length > 0"
-      v-permission-disable:disabledView="permissionView"
-      :disabled="disabledView"
-      class="btn"
-      type="link"
-      @click="$emit('view-record', props.record)"
-    >
-      查看
-    </a-button>
-    <a-button
-      v-else
-      class="btn"
-      type="link"
-      @click="$emit('view-record', props.record)"
-    >
-      查看
-    </a-button>
-    <a-divider type="vertical" />
-  </template>
-
-  <template v-if="include.modify">
-    <a-button
-      v-if="permissionModify && permissionModify.length > 0"
-      v-permission-disable:disabledModify="permissionModify"
-      :disabled="disabledModify"
-      class="btn"
-      type="link"
-      @click="$emit('modify-record', props.record)"
-    >
-      编辑
-    </a-button>
-    <a-button
-      v-else
-      class="btn"
-      type="link"
-      @click="$emit('modify-record', props.record)"
-    >
-      编辑
-    </a-button>
-    <a-divider type="vertical" />
-  </template>
-
-  <template v-if="include.del">
-    <a-popconfirm
-      :title="deleteMsg"
-      ok-text="确定"
-      cancel-text="取消"
-      @confirm="$emit('delete-record', props.record)"
-    >
+  <slot name="attach-before" />
+  <slot>
+    <template v-if="include.view">
       <a-button
-        v-if="permissionDelete && permissionDelete.length > 0"
-        v-permission-disable:disabledDelete="permissionDelete"
-        :disabled="disabledDelete"
+        v-permission-disable:[disabledViewVariable]="props.permissionView"
+        :disabled="disabledViewVariable.disabled"
         class="btn"
         type="link"
+        @click="$emit('view-record', props.record)"
       >
-        删除
+        查看
       </a-button>
+      <a-divider type="vertical" />
+    </template>
+
+    <template v-if="include.modify">
       <a-button
-        v-else
+        v-permission-disable:[disabledModifyVariable]="props.permissionModify"
+        :disabled="disabledModifyVariable.disabled"
         class="btn"
         type="link"
+        @click="$emit('modify-record', props.record)"
       >
-        删除
+        编辑
       </a-button>
-    </a-popconfirm>
-  </template>
+      <a-divider type="vertical" />
+    </template>
+
+    <template v-if="include.del">
+      <a-popconfirm
+        :title="deleteMsg"
+        ok-text="确定"
+        cancel-text="取消"
+        @confirm="$emit('delete-record', props.record)"
+      >
+        <a-button
+          v-permission-disable:[disabledDeleteVariable]="props.permissionDelete"
+          :disabled="disabledDeleteVariable.disabled"
+          class="btn"
+          type="link"
+        >
+          删除
+        </a-button>
+      </a-popconfirm>
+    </template>
+  </slot>
+  <slot name="attach-after" />
 </template>
 
 <style lang="less" scoped>
