@@ -5,7 +5,7 @@ import { useRoute } from 'vue-router'
 import { useSettingsStore } from '/@/store/settings'
 import { useSystemStore } from '/@/store/system'
 import * as consts from '/@/consts'
-import * as utils from '/@/utils/helper'
+import * as helper from '../helper'
 
 /**
  * 获取当前菜单所处分类中，父类的 key
@@ -33,7 +33,7 @@ export default function useOpenMenuKeysRepositories() {
   if (settingsStore.layoutType === consts.layoutType.SIDE_MENU
   || settingsStore.layoutType === consts.layoutType.MIX_MENU) {
     openMenuKeys.value = findParentMenuKeys(
-      utils.findTreeNodePath(systemStore.navigationMenu, 'routeName', route.name),
+      helper.findTreeNodePath(systemStore.navigationMenu, 'routeName', route.name),
       systemStore.getDictionaryValue('navigationMenuType', 'catalog')
     )
   }

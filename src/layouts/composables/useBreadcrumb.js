@@ -1,7 +1,7 @@
 import { watch, ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useSystemStore } from '/@/store/system'
-import * as utils from '/@/utils/helper'
+import * as helper from '../helper'
 
 export default function useBreadcrumb() {
   const route = useRoute()
@@ -9,11 +9,11 @@ export default function useBreadcrumb() {
   const breadcrumbList = ref([])
 
   onMounted(() => {
-    breadcrumbList.value = utils.findTreeNodePath(systemStore.navigationMenu, 'routeName', route.name)
+    breadcrumbList.value = helper.findTreeNodePath(systemStore.navigationMenu, 'routeName', route.name)
   })
 
   watch(route, (currentRoute) => {
-    breadcrumbList.value = utils.findTreeNodePath(systemStore.navigationMenu, 'routeName', currentRoute.name)
+    breadcrumbList.value = helper.findTreeNodePath(systemStore.navigationMenu, 'routeName', currentRoute.name)
   })
 
   return {
