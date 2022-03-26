@@ -2,8 +2,6 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import { createPinia } from 'pinia'
-// import permissionDisable from '/@/directive/permission/disable'
-// import permissionRemove from '/@/directive/permission/remove'
 import permission from '/@/directive/permission'
 
 import '/@/theme/default/index.less'
