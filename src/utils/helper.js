@@ -39,3 +39,9 @@ export const debounce = (cb, ctx = undefined, millisecond = 300, opts = {
 
   return debounceInstance
 }
+
+/**
+ * 返回数据类型字符串表示形式，如 'string' 'object' 'array' 'number' 等等
+ * @param {Any} data 数据
+ */
+export const typeStringOfData = (data) => Object.prototype.toString.call(data).match(/\[object (.*?)\]/)[1].toLowerCase()
