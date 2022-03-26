@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { useSystemStore } from './system'
 import { useUserStore } from './user'
 import { useTabViewsStore } from './tab-views'
 import * as api from '/@/api/auth'
@@ -28,11 +29,13 @@ export const useAuthStore = defineStore('auth', {
     },
 
     async logout() {
-      const userStore = useUserStore()
+      const systemStore = useSystemStore()
       const tabViewsStore = useTabViewsStore()
+      const userStore = useUserStore()
 
-      tabViewsStore.reset()
-      userStore.emptyUser()
+      systemStore.$reset()
+      tabViewsStore.$reset()
+      userStore.$reset()
       this.token = null
       // TODO 可能要调用一些接口
       auth.clearEnduranceTokenOfStorage()

@@ -40,12 +40,6 @@ export const useTabViewsStore = defineStore('tabViews', {
       }
     },
 
-    reset() {
-      this.cacheViews = []
-      this.cacheViewsKeys = []
-      this.activeViewKey = ''
-    },
-
     add(viewRoute) {
       if (this.cacheViewsKeys.indexOf(viewRoute.routeName) === -1) {
         this.cacheViews.push(viewRoute)

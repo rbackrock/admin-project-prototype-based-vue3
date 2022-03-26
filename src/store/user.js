@@ -28,10 +28,6 @@ export const useUserStore = defineStore('user', {
       const { data } = await api.queryRule()
       this.rule = data
       this.isFetchRule = true
-    },
-
-    emptyUser() {
-      this.user = null
     }
   }
 })
