@@ -5,7 +5,7 @@ const { createServer: createViteServer } = require('vite')
 const Mock = require('mockjs')
 const _ = require('lodash')
 
-const PORT = 3000
+const PORT = 8000
 
 function getMockMetadata() {
   const mockFileDirectory = path.join(process.cwd(), '/mock/request')
@@ -43,13 +43,15 @@ async function createServer() {
   app.use(express.urlencoded({
     extended: true
   }))
-  const vite = await createViteServer({
-    server: { middlewareMode: 'html' }
-  })
 
   makeFakeRoutes(app, getMockMetadata())
 
-  app.use(vite.middlewares)
+  if (process.env.NODE_ENV === 'mock') {
+    const vite = await createViteServer({
+      server: { middlewareMode: 'html' }
+    })
+    app.use(vite.middlewares)
+  }
 
   app.listen(PORT)
 }
