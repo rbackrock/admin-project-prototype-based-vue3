@@ -60,6 +60,9 @@ export const CRUD_HOOK_FUNCTION_FORM_DELETE_ERROR = 'crudHookFormDeleteError'
 export const CRUD_HOOK_FUNCTION_FORM_DELETE_FINALLY = 'crudHookFormDeleteFinally'
 export const CRUD_FORM_DELETE_LOADING = 'crudFormDeleteLoading'
 
+// other
+export const CRUD_HOOK_FUNCTION_SEARCH_READY_BEFORE_PROMISE = 'crudSearchReadyBeforePromise'
+
 // api
 export const CRUD_API_QUERY = 'crudApiQuery'
 export const CRUD_API_QUERY_ONE = 'crudApiQueryOne'

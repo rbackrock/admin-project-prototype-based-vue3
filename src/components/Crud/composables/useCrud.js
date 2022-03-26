@@ -7,6 +7,7 @@ import {
 import _ from 'lodash'
 import { Form } from 'ant-design-vue'
 import * as consts from '/@/components/Crud/consts'
+import * as helper from '/@/utils/helper'
 
 const { useForm } = Form
 
@@ -17,6 +18,14 @@ const { useForm } = Form
  */
 function validCrudFunc(func) {
   return _.isFunction(func)
+}
+
+/**
+ * 判断传入的参数是否为 Promise 对象
+ * @param {Promise} p 传入的 promise 对象
+ */
+function validPromise(p) {
+  return helper.typeStringOfData(p) === 'promise'
 }
 
 /**
@@ -74,6 +83,9 @@ export default function useCrud({
   [consts.CRUD_HOOK_FUNCTION_FORM_DELETE_ERROR]: hookFormDeleteError,
   [consts.CRUD_HOOK_FUNCTION_FORM_DELETE_FINALLY]: hookFormDeleteFinally,
 
+  // other
+  [consts.CRUD_HOOK_FUNCTION_SEARCH_READY_BEFORE_PROMISE]: hookSearchReadyBeforePromise,
+
   // api
   [consts.CRUD_API_QUERY]: apiQuery,
   [consts.CRUD_API_QUERY_ONE]: apiQueryOne,
@@ -130,7 +142,7 @@ export default function useCrud({
   const searchUseForm = useForm(crudSearchFormRef, crudSearchFormRuleReactive)
   const formUseForm = useForm(crudFormRef, crudFormRuleReactive)
 
-  const doQueryFunc = () => {
+  function doQueryFunc() {
     crudReactive[consts.CRUD_SEARCH_LOADING] = true
     apiQuery(toRaw(crudSearchFormRef.value), toRaw(crudReactive[consts.CRUD_SEARCH_QUERY_ATTACH_PARAMS])).then(({ data, result, response }) => {
       // 请求成功之前的钩子
@@ -168,7 +180,7 @@ export default function useCrud({
   }
 
   // 查询方法
-  const query = () => {
+  function query(){
     // 查询必须确保 query api 存在
     if (validCrudFunc(apiQuery)) {
       // 查询之前的钩子
@@ -211,14 +223,14 @@ export default function useCrud({
   }
 
   // 打开新增表单方法
-  const openAddForm = () => {
+  function openAddForm() {
     formUseForm.resetFields()
     crudReactive[consts.CRUD_FORM_TYPE] = consts.CRUD_FORM_TYPE_ADD
     crudReactive[consts.CRUD_FORM_VISIBLE] = true
   }
 
   // 打开编辑表单方法
-  const openModifyForm = (primaryKey, ...attachParams) => {
+  function openModifyForm(primaryKey, ...attachParams) {
     if (primaryKey) {
       formUseForm.resetFields()
       crudReactive[consts.CRUD_FORM_TYPE] = consts.CRUD_FORM_TYPE_MODIFY
@@ -263,7 +275,7 @@ export default function useCrud({
     }
   }
 
-  const doSaveFormFunc = (saveFunc, ...attachParams) => {
+  function doSaveFormFunc (saveFunc, ...attachParams) {
     crudReactive[consts.CRUD_SAVE_BUTTON_LOADING] = true
     saveFunc(toRaw(crudFormRef.value), ...attachParams).then(({ data, result, response }) => {
       if (validCrudFunc(hookFormSaveSuccessBefore)) {
@@ -308,7 +320,7 @@ export default function useCrud({
   }
 
   // 保存或者修改方法
-  const save = (...attachParams) => {
+  function save(...attachParams) {
     let saveFunc = null
     if (crudReactive[consts.CRUD_FORM_TYPE] === consts.CRUD_FORM_TYPE_ADD) {
       saveFunc = apiAdd
@@ -340,7 +352,7 @@ export default function useCrud({
   }
 
   // 删除
-  const del = (primaryKey, ...attachParams) => {
+  function del(primaryKey, ...attachParams) {
     if (validCrudFunc(apiDelete)) {
       if (validCrudFunc(hookFormDeleteBefore)) {
         doFunc(crudReactive, hookFormDeleteBefore)
@@ -381,9 +393,18 @@ export default function useCrud({
   }
 
   // do function
-  if (opts.firstSearch) {
-    query()
+  if (validPromise(hookSearchReadyBeforePromise)) {
+    hookSearchReadyBeforePromise.then(() => {
+      if (opts.firstSearch) {
+        query()
+      }
+    })
+  } else {
+    if (opts.firstSearch) {
+      query()
+    }
   }
+  
 
   return {
     // 对外扩展 data properties
