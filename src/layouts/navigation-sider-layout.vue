@@ -3,7 +3,7 @@
   import { useSettingsStore } from '/@/store/settings'
   import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
   import { themeConsts } from '/@/consts'
-  // import NavigationMenu from './components/TheNavigationMenu.vue'
+  import NavigationMenu from './components/TheNavigationMenu/index.jsx'
   import HeaderControl from './components/TheHeaderControl.vue'
   import MainContent from './components/TheMainContent.vue'
 
@@ -32,7 +32,7 @@
         </a>
       </div>
       <div class="navigation">
-        <!-- <navigation-menu :theme="themeType === themeConsts.DEEP_BLUE_THEME ? 'light' : 'dark'" /> -->
+        <NavigationMenu :theme="themeType === themeConsts.DEEP_BLUE_THEME ? 'light' : 'dark'" />
       </div>
       <div class="bottom-link">
         <menu-unfold-outlined

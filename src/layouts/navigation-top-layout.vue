@@ -1,5 +1,5 @@
 <script setup>
-  // import NavigationMenu from './components/TheNavigationMenu.vue'
+  import NavigationMenu from './components/TheNavigationMenu/index.jsx'
   import HeaderControl from './components/TheHeaderControl.vue'
   import MainContent from './components/TheMainContent.vue'
 </script>
@@ -18,7 +18,7 @@
             </div>
           </div>
           <div class="header-menu">
-            <!-- <navigation-menu mode="horizontal" /> -->
+            <NavigationMenu mode="horizontal" />
           </div>
           <div class="header-control">
             <header-control />
