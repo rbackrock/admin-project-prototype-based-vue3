@@ -61,7 +61,7 @@ export const CRUD_HOOK_FUNCTION_FORM_DELETE_FINALLY = 'crudHookFormDeleteFinally
 export const CRUD_FORM_DELETE_LOADING = 'crudFormDeleteLoading'
 
 // other
-export const CRUD_HOOK_FUNCTION_SEARCH_READY_BEFORE_PROMISE = 'crudSearchReadyBeforePromise'
+export const CRUD_INJECTION_SEARCH_READY_BEFORE_PROMISE = 'crudInjectionSearchReadyBeforePromise'
 
 // api
 export const CRUD_API_QUERY = 'crudApiQuery'

@@ -84,7 +84,7 @@ export default function useCrud({
   [consts.CRUD_HOOK_FUNCTION_FORM_DELETE_FINALLY]: hookFormDeleteFinally,
 
   // other
-  [consts.CRUD_HOOK_FUNCTION_SEARCH_READY_BEFORE_PROMISE]: hookSearchReadyBeforePromise,
+  [consts.CRUD_INJECTION_SEARCH_READY_BEFORE_PROMISE]: injectionSearchReadyBeforePromise,
 
   // api
   [consts.CRUD_API_QUERY]: apiQuery,
@@ -393,8 +393,8 @@ export default function useCrud({
   }
 
   // do function
-  if (validPromise(hookSearchReadyBeforePromise)) {
-    hookSearchReadyBeforePromise.then(() => {
+  if (validPromise(injectionSearchReadyBeforePromise)) {
+    injectionSearchReadyBeforePromise.then(() => {
       if (opts.firstSearch) {
         query()
       }
