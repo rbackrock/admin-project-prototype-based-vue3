@@ -23,6 +23,8 @@
       router.replace({
         name: 'Home'
       })
+    }).finally(() => {
+      loading.value = false
     })
   }, getCurrentInstance().proxy)
 </script>
