@@ -21,7 +21,7 @@ function permission(el, binding, vnode) {
     if (hasPermission === false) {
       // disable
       if (arg) {
-        vm[arg] = true
+        arg.disabled = true
       }
     }
   }
