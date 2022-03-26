@@ -1,9 +1,17 @@
 <script setup>
-  import { ref } from 'vue'
+  import { ref, reactive } from 'vue'
 
-  const disabledAddVariable = ref(false)
-  const disabledModifyVariable = ref(false)
-  const disabledDeleteVariable = ref(false)
+  const disabledAddVariable = reactive({
+    disabled: false
+  })
+  const disabledModifyVariable = reactive({
+    disabled: false
+  })
+  const disabledDeleteVariable = reactive({
+    disabled: false
+  })
+
+  const value = ref('')
 </script>
 
 <template>
@@ -18,23 +26,28 @@
       <div>
         <a-space>
           <a-button
-            v-permission-disable:disabledAddVariable="['add']" 
-            :disabled="disabledAddVariable"
+            v-permission-disable:[disabledAddVariable]="['add']" 
+            :disabled="disabledAddVariable.disabled"
           >
             新增
           </a-button>
           <a-button
-            v-permission-disable:disabledModifyVariable="['modify']"
-            :disabled="disabledModifyVariable"
+            v-permission-disable:[disabledModifyVariable]="['modify']"
+            :disabled="disabledModifyVariable.disabled"
           >
             修改
           </a-button>
           <a-button
-            v-permission-disable:disabledDeleteVariable="['delete']"
-            :disabled="disabledDeleteVariable"
+            v-permission-disable:[disabledDeleteVariable]="['delete']"
+            :disabled="disabledDeleteVariable.disabled"
           >
             删除
           </a-button>
+          <a-input
+            v-model:value="value"
+            v-permission-disable:[disabledDeleteVariable]="['delete']"
+            :disabled="disabledDeleteVariable.disabled"
+          />
         </a-space>
       </div>
       <h3 style="margin-top: 0.5em;">
