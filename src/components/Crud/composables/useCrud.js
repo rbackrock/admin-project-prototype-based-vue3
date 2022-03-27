@@ -157,6 +157,7 @@ export default function useCrud({
         // eslint-disable-next-line no-lonely-if
         if (opts.hasPaging) {
           crudReactive[consts.CRUD_SEARCH_DATA] = data.list
+          crudPagingReactive[consts.CRUD_SEARCH_PAGING_TOTAL] = data.total
         } else {
           crudReactive[consts.CRUD_SEARCH_DATA] = data
         }
