@@ -277,7 +277,7 @@ const disabledViewVariable = reactive({
 })
 ```
 
-权限指令分为 `disable` 和 `remove` 两种，原型项目会约定用户 Rule 数据格式
+权限指令分为 `disable` 和 `remove` 两种，其中响应式数据汇总的 `disabled` 属性名称不可更改为其他名称
 
 + `disable` 类型的权限指令使用该指令会使目标组件的 `disable` 为 `true` 常见于 `a-button` 组件，或者任何有此属性的组件都可以使用
 
@@ -805,37 +805,46 @@ Crud 对外暴露出来的除了上述提到的 `crudDataPropertiesReactive` `cr
 该组件的 `props` 声明属性如下
 
 ```js
-props: {
+const props = defineProps({
   tableOptions: {
     type: Object,
+    required: true
+  },
+  hasAddButton: {
+    type: Boolean,
+    required: false,
+    default: true
+  },
+  permissionAdd: {
+    type: Array,
     required: false,
     default() {
-      return {}
+      return []
     }
   }
-}
+})
 ```
 
-该组件需要传入表格的两个属性，一个是表格的 `columns` 属性声明，它是 antdV 提供的能力，详见[这里](https://2x.antdv.com/components/table-cn)
+该组件需要传入表格的两个属性，一个是表格的 `columns` 属性声明，它是 antdV 提供的能力，详见[这里](https://next.antdv.com/components/table-cn#Column)
 
 另外一个属性是表格 `size` 的响应式对象
 
 它提供了一个默认插槽，如果不提供默认插槽则预置有新增按钮
 
-详细示例见[这里](https://github.com/rbackrock/vue3-scaffold/blob/main/src/views/example/crud/index.vue)
+详细示例见[这里](https://github.com/rbackrock/admin-project-prototype-based-vue3/blob/main/src/views/example/crud/index.vue)
 
 ## 表格数据操作列组件
 
 该组件抽象了一般表格数据操作列的一系列操作，它的 `props` 声明如下
 
 ```js
-props: {
+const props = defineProps({
   include: {
     type: Object,
     required: false,
     default() {
       return {
-        view: false,
+        view: true,
         modify: true,
         del: true
       }
@@ -871,7 +880,7 @@ props: {
       return []
     }
   }
-}
+})
 ```
 
 + `include` 它用于开启或者关闭查看，编辑，删除按钮
@@ -886,7 +895,7 @@ props: {
 
 + `permissionDelete` 它是删除数据按钮的权限，是一个数组，作用等同自定义指令 `v-permission`
 
-该组件提供了一个 `attach-control` 插槽，用于在保证有查看或者编辑或者删除预置的按钮前提下，添加自定义按钮
+默认插槽中包含查看、修改、删除功能。该组件提供了一个 `attach-before` 和 `attach-after` 插槽，用于在保证有查看或者编辑或者删除预置的按钮前提下，添加自定义按钮
 
 组件提供了三个 `$emit` 方法，用于给使用者进行查看，编辑和删除逻辑操作
 
@@ -896,7 +905,7 @@ props: {
 
 + `delete-record` 用于给使用者进行删除业务操作，例如 `@delete-record="handleDeleteRecord"`
 
-完整示例可以[点这里](https://github.com/rbackrock/vue3-scaffold/blob/main/src/views/example/crud/index.vue)查看
+完整示例可以[点这里](https://github.com/rbackrock/admin-project-prototype-based-vue3/blob/main/src/views/example/crud/index.vue)查看
 
 # FAQ
 
