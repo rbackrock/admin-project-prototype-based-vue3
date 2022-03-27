@@ -20,7 +20,7 @@ export const CRUD_HOOK_FUNCTION_SEARCH_RESPONSE_FINALLY = 'crudHookSearchRespons
 export const CRUD_SEARCH_LOADING = 'crudSearchLoading'
 export const CRUD_SEARCH_DATA = 'crudSearchData'
 // 查询分页相关
-export const CRUD_HOOK_FUNCTION_SEARCH_PAGING = 'crudHookFunctionSearchPaging'
+export const CRUD_INJECTION_SEARCH_PAGING_INIT = 'crudInjectionSearchPagingInit'
 export const CRUD_SEARCH_PAGING_PAGE_NUM = 'curdSearchPagingPageNum'
 export const CRUD_SEARCH_PAGING_PAGE_SIZE = 'curdSearchPagingPageSize'
 export const CRUD_SEARCH_PAGING_TOTAL = 'crudSearchPagingTotal'
@@ -72,6 +72,7 @@ export const CRUD_API_DELETE = 'curdApiDelete'
 
 // function
 export const CRUD_FUNCTION_QUERY = 'crudFunctionQuery'
+export const CRUD_FUNCTION_QUERY_AFTER_CHANGE_PAGE = 'crudFunctionQueryAfterChangePage'
 export const CRUD_FUNCTION_OPEN_FORM_ADD = 'crudFunctionOpenFormAdd'
 export const CRUD_FUNCTION_OPEN_FORM_MODIFY = 'crudFunctionOpenFormModify'
 export const CRUD_FUNCTION_SAVE = 'crudFunctionSave'

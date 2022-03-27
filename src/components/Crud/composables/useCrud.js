@@ -48,7 +48,7 @@ export default function useCrud({
   [consts.CRUD_SEARCH_INJECTION_FORM_RULE]: searchInjectionFormRule,
   [consts.CRUD_SEARCH_INJECTION_QUERY_ATTACH_PARAMS]: searchInjectionQueryAttachParams,
   [consts.CRUD_HOOK_FUNCTION_SEARCH_RESPONSE_BEFORE]: hookSearchResponseBefore,
-  [consts.CRUD_HOOK_FUNCTION_SEARCH_PAGING]: hookSearchPaging,
+  [consts.CRUD_INJECTION_SEARCH_PAGING_INIT]: searchInjectionPagingInit,
   [consts.CRUD_HOOK_FUNCTION_SEARCH_RESPONSE]: hookSearchResponse,
   [consts.CRUD_HOOK_FUNCTION_SEARCH_RESPONSE_SUCCESS_BEFORE]: hookSearchResponseSuccessBefore,
   [consts.CRUD_HOOK_FUNCTION_SEARCH_RESPONSE_SUCCESS]: hookSearchResponseSuccess,
@@ -190,18 +190,10 @@ export default function useCrud({
 
       // 表格查询带分页的钩子
       if (opts.hasPaging) {
-        if (validCrudFunc(hookSearchPaging)) {
-          doFunc(crudReactive, hookSearchPaging, crudPagingReactive)
-          crudReactive[consts.CRUD_SEARCH_QUERY_ATTACH_PARAMS] = _.assign(crudReactive[consts.CRUD_SEARCH_QUERY_ATTACH_PARAMS], {
-            pageNum: crudPagingReactive[consts.CRUD_SEARCH_PAGING_PAGE_NUM],
-            pageSize: crudPagingReactive[consts.CRUD_SEARCH_PAGING_PAGE_SIZE]
-          })
-        } else {
-          crudReactive[consts.CRUD_SEARCH_QUERY_ATTACH_PARAMS] = _.assign(crudReactive[consts.CRUD_SEARCH_QUERY_ATTACH_PARAMS], {
-            pageNum: 1,
-            pageSize: 20
-          })
-        }
+        crudReactive[consts.CRUD_SEARCH_QUERY_ATTACH_PARAMS] = _.assign(crudReactive[consts.CRUD_SEARCH_QUERY_ATTACH_PARAMS], {
+          pageNum: crudPagingReactive[consts.CRUD_SEARCH_PAGING_PAGE_NUM],
+          pageSize: crudPagingReactive[consts.CRUD_SEARCH_PAGING_PAGE_SIZE]
+        })
       }
 
       // 如果存在 search request hook 说明使用者自己接管，成功或者失败都自己接管
@@ -392,6 +384,22 @@ export default function useCrud({
     }
   }
 
+  function changePage(paging) {
+    crudPagingReactive[consts.CRUD_SEARCH_PAGING_PAGE_NUM] = paging.current
+    crudPagingReactive[consts.CRUD_SEARCH_PAGING_PAGE_SIZE] = paging.pageSize
+    crudPagingReactive[consts.CRUD_SEARCH_PAGING_TOTAL] = paging.total
+  }
+
+  function queryAfterChangePage(paging) {
+    changePage(paging)
+    query()
+  }
+
+  // 分页初始化
+  if (validCrudFunc(searchInjectionPagingInit)) {
+    doFunc(crudReactive, searchInjectionPagingInit, crudPagingReactive)
+  }
+
   // do function
   if (validPromise(injectionSearchReadyBeforePromise)) {
     injectionSearchReadyBeforePromise.then(() => {
@@ -422,6 +430,7 @@ export default function useCrud({
 
     // crud function
     [consts.CRUD_FUNCTION_QUERY]: query,
+    [consts.CRUD_FUNCTION_QUERY_AFTER_CHANGE_PAGE]: queryAfterChangePage,
     [consts.CRUD_FUNCTION_OPEN_FORM_ADD]: openAddForm,
     [consts.CRUD_FUNCTION_OPEN_FORM_MODIFY]: openModifyForm,
     [consts.CRUD_FUNCTION_SAVE]: save,
