@@ -8,6 +8,8 @@
 
 整个原型项目使用 `<script setup></script>` 的形式编写，所以以下说明和描述默认情况下都以这种编写方式为准
 
+优先更新我的 [Github](https://github.com/rbackrock/admin-project-prototype-based-vue3)
+
 ## 为什么要写这个原型项目
 
 + 曾经使用过 [Ant Design of React](https://ant.design/docs/react/introduce-cn) 组件库，非常喜欢它的风格
@@ -78,9 +80,9 @@ npm run build
 
 点击名称查看说明和使用方法
 
-- [X] [Crud](https://github.com/rbackrock/vue3-scaffold#crud)
-- [X] [表格操作](https://github.com/rbackrock/vue3-scaffold#%E8%A1%A8%E6%A0%BC%E6%93%8D%E4%BD%9C%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E7%BB%84%E4%BB%B6)（新增，刷新，表格大小，表格显示列）
-- [X] [表格操作列](https://github.com/rbackrock/vue3-scaffold#%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E5%88%97%E7%BB%84%E4%BB%B6)（表格行中的操作列，预置查看，编辑，删除按钮）
+- [X] [Crud](https://github.com/rbackrock/admin-project-prototype-based-vue3#crud)
+- [X] [表格操作](https://github.com/rbackrock/admin-project-prototype-based-vue3#%E8%A1%A8%E6%A0%BC%E6%93%8D%E4%BD%9C%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E7%BB%84%E4%BB%B6)（新增，刷新，表格大小，表格显示列）
+- [X] [表格操作列](https://github.com/rbackrock/admin-project-prototype-based-vue3#%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E5%88%97%E7%BB%84%E4%BB%B6)（表格行中的操作列，预置查看，编辑，删除按钮）
 
 ...待添加
 
@@ -88,7 +90,7 @@ npm run build
 
 点击名称查看说明和使用方法
 
-- [X] [按钮级别操作权限](https://github.com/rbackrock/vue3-scaffold#%E6%9D%83%E9%99%90%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4)（支持设置 disable 属性或者直接删除该 DOM 节点）
+- [X] [按钮级别操作权限](https://github.com/rbackrock/admin-project-prototype-based-vue3#%E6%9D%83%E9%99%90%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4)（支持设置 disable 属性或者直接删除该 DOM 节点）
 
 # 更改 Layout
 
@@ -306,7 +308,7 @@ const disabledViewVariable = reactive({
   <a-button v-permission.remove="['delete']">删除</a-button>
   ```
 
-完整示例可以[点这里](https://github.com/rbackrock/vue3-scaffold/blob/main/src/views/example/permission/index.vue)查看
+完整示例可以[点这里](https://github.com/rbackrock/admin-project-prototype-based-vue3/blob/main/src/views/example/permission/index.vue)查看
 
 # 组件使用
 
@@ -397,7 +399,7 @@ Crud 组合式函数使用的响应对象一共有两大类
 
   类型：`Object`
 
-  数据查询条件的效验规则模型，类型是一个普通对象，该对象请参考 [Form 表单验证](https://2x.antdv.com/components/form-cn#components-form-demo-validation)
+  数据查询条件的效验规则模型，类型是一个普通对象，该对象请参考 [Form 表单验证](https://next.antdv.com/components/form-cn#%E6%A0%A1%E9%AA%8C%E8%A7%84%E5%88%99)
 
 + `CRUD_SEARCH_INJECTION_QUERY_ATTACH_PARAMS`
 
@@ -491,7 +493,7 @@ Crud 组合式函数使用的响应对象一共有两大类
 
   类型：`Object`
 
-  数据表单的效验规则模型，类型是一个普通对象，该对象请参考 [Form 表单验证](https://2x.antdv.com/components/form-cn#components-form-demo-validation)
+  数据表单的效验规则模型，类型是一个普通对象，该对象请参考 [Form 表单验证](https://next.antdv.com/components/form-cn#%E6%A0%A1%E9%AA%8C%E8%A7%84%E5%88%99)
 
 + `CRUD_INJECTION_SEARCH_PAGING_INIT`
 
@@ -794,9 +796,9 @@ Crud 对外暴露出来的除了上述提到的 `crudDataPropertiesReactive` `cr
   }
 ```
 
-`useForm` 对象是 antdV 组件库提供的一种表单处理的方法，详见[这里](https://2x.antdv.com/components/form-cn#useForm)
+`useForm` 对象是 antdV 组件库提供的一种表单处理的方法，详见[这里](https://next.antdv.com/components/form-cn#useForm-v2-2)
 
-示例页面代码可以点[这里](https://github.com/rbackrock/vue3-scaffold/blob/main/src/views/example/crud/index.vue)查看
+示例页面代码可以点[这里](https://github.com/rbackrock/admin-project-prototype-based-vue3/blob/main/src/views/example/crud/index.vue)查看
 
 ## 表格常用操作组件
 
