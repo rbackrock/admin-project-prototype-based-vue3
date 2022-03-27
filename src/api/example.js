@@ -10,6 +10,14 @@ export const query = (queryParams = {}, queryAttachParams = {}) => http({
   disableMessage: true
 })
 
+export const queryByPaging = (queryParams = {}, queryAttachParams = {}) => http({
+  url: `/api/example/crud/page${qs.stringify(_.assign(queryParams, queryAttachParams), {
+    addQueryPrefix: true
+  })}`,
+  method: 'get',
+  disableMessage: true
+})
+
 // eslint-disable-next-line no-unused-vars
 export const queryOne = () => (
   http({

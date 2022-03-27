@@ -143,6 +143,12 @@ const example = [
     },
     children: [
       {
+        path: 'crud-pagination',
+        name: 'ExampleCrudPagination',
+        meta: {},
+        component: () => import('/@/views/example/crud-pagination/index.vue')
+      },
+      {
         path: 'crud',
         name: 'ExampleCrud',
         meta: {

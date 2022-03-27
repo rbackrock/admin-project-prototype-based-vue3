@@ -28,6 +28,38 @@ module.exports = [
     }
   },
   {
+    url: '/api/example/crud/page',
+    type: 'get',
+    response() {
+      return {
+        code: 20000,
+        data: {
+          list: [
+            {
+              id: 1,
+              name: '张三',
+              email: 'zhangsan@crud.com'
+            },
+            {
+              id: 2,
+              name: '李四',
+              email: 'lisi@crud.com'
+            },
+            {
+              id: 3,
+              name: '王五',
+              email: 'wangwu@crud.com'
+            }
+          ],
+          pageNum: 1,
+          pageSize: 20
+        },
+        message: null,
+        success: true
+      }
+    }
+  },
+  {
     url: '/api/example/crud/1',
     type: 'get',
     response() {

@@ -20,6 +20,13 @@ module.exports = [
           type: 'catalog',
           children: [
             {
+              routeName: 'ExampleCrudPagination',
+              title: 'Crud 分页',
+              uniqueTag: 'ExampleCrudPagination',
+              type: 'menu',
+              children: []
+            },
+            {
               routeName: 'ExampleCrud',
               title: 'Crud 和 Table 组件',
               uniqueTag: 'ExampleCrud',
