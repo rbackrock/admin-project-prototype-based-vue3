@@ -342,6 +342,8 @@ Crud 布局组件有三个插槽
 
 ### Crud 组合式函数使用的响应式数据
 
+注意：项目中，默认分页数据会返回 `total` 字段和 `list` 查询数据，如果需要修改，请修改[这里](https://github.com/rbackrock/admin-project-prototype-based-vue3/blob/main/src/components/Crud/composables/useCrud.js)的 `159` 行
+
 Crud 组合式函数使用的响应对象一共有两大类
 
 + `crudReactive` Crud 提供的响应式对象
