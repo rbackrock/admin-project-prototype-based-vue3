@@ -10,6 +10,8 @@
 
 优先更新我的 [Github](https://github.com/rbackrock/admin-project-prototype-based-vue3)
 
+如果在查看演示或者开发中发现页面响应慢的问题，是因为你开着 `dev-tools` 并且使用了 [Vue 的开发扩展程序](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd?hl=zh-CN)我遇到的时候，扩展程序为 6.1.3 版
+
 ## 为什么要写这个原型项目
 
 + 曾经使用过 [Ant Design of React](https://ant.design/docs/react/introduce-cn) 组件库，非常喜欢它的风格
