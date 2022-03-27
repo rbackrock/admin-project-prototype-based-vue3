@@ -133,7 +133,7 @@
         :columns="tableOptions.columns"
         :size="tableOptions.size"
         row-key="id"
-        :pagination="{ 'show-size-changer': true }"
+        :pagination="false"
       >
         <template #bodyCell="{ column, record }">
           <template v-if="column.key === 'action'">

@@ -69,7 +69,7 @@ import { reactive, computed } from 'vue'
     [crudConsts.CRUD_API_MODIFY]: exampleApi.modify,
     [crudConsts.CRUD_API_DELETE]: exampleApi.del,
     [crudConsts.CRUD_INJECTION_SEARCH_PAGING_INIT]: function(crudReactive, crudPagingReactive) {
-      crudPagingReactive[crudConsts.CRUD_SEARCH_PAGING_PAGE_SIZE] = 1
+      crudPagingReactive[crudConsts.CRUD_SEARCH_PAGING_PAGE_SIZE] = 20
     }
   }, {
     hasPaging: true
@@ -79,8 +79,7 @@ import { reactive, computed } from 'vue'
     total: crud[crudConsts.CRUD_SEARCH_PAGING_TOTAL].value,
     current: crud[crudConsts.CRUD_SEARCH_PAGING_PAGE_NUM].value,
     pageSize: crud[crudConsts.CRUD_SEARCH_PAGING_PAGE_SIZE].value,
-    'show-size-changer': true,
-    pageSizeOptions: ['1', '10', '20']
+    'show-size-changer': true
   }))
   
   function handleAdd() {
