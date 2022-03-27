@@ -52,7 +52,8 @@ module.exports = [
             }
           ],
           pageNum: 1,
-          pageSize: 20
+          pageSize: 20,
+          total: 3
         },
         message: null,
         success: true
