@@ -1,10 +1,12 @@
 # 介绍
 
-这是按照个人喜好搭建的一套基于 Vue3 和 AntdV 的前端原型项目，仅供学习交流，不接受 PR ，不定期更新常用组件，因所用框架，组件库，类库不稳定，所以主要用于交流和学习，只关注 Chrome 浏览器正常使用
+这是按照个人喜好搭建的一套基于 Vue3 和 AntdV 的前端原型项目，仅供学习交流，不接受 PR ，不定期更新常用组件，因所用框架，组件库，类库不稳定，主要用于交流和学习，只关注 Chrome 浏览器正常使用
 
 该原型项目提供了三种布局类型，还有一套自定义深蓝色主题，因 AntdV 组件库数量众多，难免在深蓝色的主题下，组件没有完全覆盖
 
 因精力和水平有限，难免有遗漏和问题，请多包涵
+
+整个原型项目使用 `<script setup></script>` 的形式编写，所以以下说明和描述默认情况下都以这种编写方式为准
 
 ## 为什么要写这个原型项目
 
@@ -14,25 +16,31 @@
 
 # 运行
 
-预览
+为了方便演示，项目使用了 Vite 的 [middlewareMode](https://vitejs.dev/config/#server-middlewaremode) 模式，因此 mock 的服务器可以独立运行
+
+mock 服务器独立运行，提供 mock 数据的接口，此命令只运行 mock 服务器，不运行 vite 项目
+
+```bash
+npm run start:server
+```
+
+以 Vite 的 `middlewareMode` 运行整个 vite 项目，接口模拟数据都是真实网络请求可以在 `dev-tools` 的 Network 面板中看到，用于展示比较完整的原型项目
 
 ```bash
 npm run dev:mock
 ```
 
-开发，在 `vite.config.js` 中设置代理服务器
+开发时使用，需要准备真实后端服务器，如果需要，在 `vite.config.js` 中设置后端服务器地址进行代理设置
 
 ```bash
 npm run dev
 ```
 
-打包
+项目生产环境打包
 
 ```bash
 npm run build
 ```
-
-默认情况下使用纯前端运行原型项目，使用了 `Mock` 如果要关闭 `Mock` 请在 `src/vue.config.js` 里，设置 `mockMode` 为 `false`
 
 # 预览
 
@@ -73,12 +81,6 @@ npm run build
 - [X] [Crud](https://github.com/rbackrock/vue3-scaffold#crud)
 - [X] [表格操作](https://github.com/rbackrock/vue3-scaffold#%E8%A1%A8%E6%A0%BC%E6%93%8D%E4%BD%9C%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E7%BB%84%E4%BB%B6)（新增，刷新，表格大小，表格显示列）
 - [X] [表格操作列](https://github.com/rbackrock/vue3-scaffold#%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E5%88%97%E7%BB%84%E4%BB%B6)（表格行中的操作列，预置查看，编辑，删除按钮）
-- [ ] 扩展 a-modal 组件
-- [ ] 指定 DOM 节点打印
-- [ ] 富文本框
-- [ ] 视频播放模态框
-- [ ] 帆软报表查看模态框
-- [ ] 悬浮式 Popover 菜单导航
 
 ...待添加
 
@@ -87,12 +89,6 @@ npm run build
 点击名称查看说明和使用方法
 
 - [X] [按钮级别操作权限](https://github.com/rbackrock/vue3-scaffold#%E6%9D%83%E9%99%90%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4)（支持设置 disable 属性或者直接删除该 DOM 节点）
-
-## 其他
-
-点击名称查看说明和使用方法
-
-- [X] Mock
 
 # 更改 Layout
 
@@ -168,22 +164,11 @@ npm run build
 
 导航菜单的权限数据则表示着，当登录用户具有哪些导航菜单使用权
 
-导航菜单权限的数据格式如下
-
-```js
-{
-  routeName: 'Home', // 和前端 router-table.js 路由表中的路由 name 值对应
-  title: '首页', // 导航菜单的名称
-  uniqueTag: 'Home', // 此菜单唯一标识，如果不使用 a-menu-item-group 组件的话，默认和 routeName 一致即可，否则的话自定义一个唯一标识字符串 
-  type: 'menu', // 菜单的类型，一共三种，分别是 catalog group menu 其中 catalog 其实代码的是 a-sub-menu 组件，group 代表的是 a-menu-item-group 组件，menu 代表的是 a-menu-item 组件
-  fixed: true, // 此原型项目默认带有菜单标签页，fixed 代表此菜单页无法被关闭
-  children: [] // 导航菜单嵌套的字段
-}
-```
+导航菜单权限的数据格式和上文中的 [导航菜单和前端路由表映射数据的约定](https://github.com/rbackrock/admin-project-prototype-based-vue3#%E5%90%8E%E7%AB%AF%E5%AF%BC%E8%88%AA%E8%8F%9C%E5%8D%95%E5%92%8C%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1%E8%A1%A8%E6%98%A0%E5%B0%84%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BA%A6%E5%AE%9A) 一致
 
 ### 用户操作权限数据的约定
 
-系统应该有一个页面维护哪个角色拥有某个页面有哪些操作数据的权限，或者如果存在导航菜单权限可以挂在对应菜单中，不管哪种都可以灵活设置，但是约定用户操作权限格式如下
+系统应该有一个页面维护哪个角色拥有某个页面有哪些操作数据的权限，或者如果存在导航菜单权限可以挂在对应菜单中，不管哪种都可以灵活设置，也支持全字符串权限标识匹配，约定针对页面的用户操作权限格式如下
 
 ```js
 [
@@ -232,19 +217,6 @@ npm run build
 
 因为原型项目使用的 AntdV 组件库的图标是组件，所以菜单中使用的图标专门为 `/src/router/icon-mapper.js` 文件维护
 
-在使用 `router-table.js` 中添加路由时，如果想要该路由直接通过权限效验，直接访问，那么需要在 `meta` 中添加 `requiresAuth: false` 例如：
-
-```js
-{
-  path: '/login',
-  name: 'Login',
-  component: Login,
-  meta: {
-    requiresAuth: false
-  }
-}
-```
-
 ## throttle/debounce 方法的使用 
 
 假设页面中有 `<a-form @finish="handleLogin" />`
@@ -256,7 +228,7 @@ npm run build
   import { getCurrentInstance } from 'vue'
   import { throttle } from '/@/utils/helper'
 
-  const handleLogin = throttle(function (...values) {
+  const handleLogin = throttle(function(throttleInstance, form) {
     console.log(this)
   }, getCurrentInstance().proxy)
 </script>
@@ -268,7 +240,7 @@ npm run build
 <script setup>
   export default {
     methods: {
-      handleLogin: throttle.call(this, function (...values) {
+      handleLogin: throttle.call(this, function(throttleInstance, form) {
         console.log(this)
       })
     }
@@ -280,13 +252,34 @@ npm run build
 
 如果使用组合式 API 方式编写，很少有使用 `this` 的场景，示例中只是为了演示
 
+其中 `throttleInstance` 是当前节流对象，可以使用 `cancel` 取消延迟方法和 `flush` 立即执行方法
+
 # 自定义指令使用
 
 ## 权限自定义指令
 
+### 使用方法
+
+假设有增加，修改，删除三个按钮，先定义 `disable` 的 `state`
+
+```js
+const disabledAddVariable = reactive({
+  disabled: false
+})
+const disabledModifyVariable = reactive({
+  disabled: false
+})
+const disabledDeleteVariable = reactive({
+  disabled: false
+})
+const disabledViewVariable = reactive({
+  disabled: false
+})
+```
+
 权限指令分为 `disable` 和 `remove` 两种，原型项目会约定用户 Rule 数据格式
 
-+ `disable` 类型的权限指令使用该指令会使目标组件的 `disable` 为 `true` 常见于 `a-button` 组件
++ `disable` 类型的权限指令使用该指令会使目标组件的 `disable` 为 `true` 常见于 `a-button` 组件，或者任何有此属性的组件都可以使用
 
   使用方式如下
 
@@ -294,10 +287,12 @@ npm run build
   <!-- disabledAdd, disabledModify, disabledDelete 为按钮 disabled 属性的响应属性，必须要有 -->
   <!-- 原型项目会约定用户 rule 中权限的描述为：'页面name:权限描述'  -->
   <!-- 例如该例子中用户的 rule 数据为 ['ExamplePermission:add', 'ExamplePermission:modify'] -->
+  <!-- 也可以使用全字符串匹配，例如查看按钮，此时 rule 数据为 ['ExamplePermissionView'] -->
   <!-- 该指令传入的数据直接使用权限描述的数组即可 -->
-  <a-button v-permission:disabledAdd.disabled="['add']" :disabled="disabledAdd">新增</a-button>
-  <a-button v-permission:disabledModify.disabled="['modify']" :disabled="disabledModify">修改</a-button>
-  <a-button v-permission:disabledDelete.disabled="['delete']" :disabled="disabledDelete">删除</a-button>
+  <a-button v-permission-disable:[disabledAddVariable]="['add']" :disabled="disabledAddVariable.disabled">新增</a-button>
+  <a-button v-permission-disable:[disabledModifyVariable]="['modify']" :disabled="disabledModifyVariable.disabled">修改</a-button>
+  <a-button v-permission-disable:[disabledDeleteVariable]="['delete']" :disabled="disabledDeleteVariable.disabled">删除</a-button>
+  <a-button v-permission-disable:[disabledViewVariable]="['ExamplePermissionView']" :disabled="disabledViewVariable.disabled">查看</a-button>
   ```
   
 + `remove` 类型的权限指令如果没有权限则会直接删除该 DOM 节点  
@@ -305,6 +300,7 @@ npm run build
   使用方式如下
 
   ```html
+  <!-- 权限描述和 disable 一样 -->
   <a-button v-permission.remove="['add']">新增</a-button>
   <a-button v-permission.remove="['modify']">修改</a-button>
   <a-button v-permission.remove="['delete']">删除</a-button>
@@ -322,11 +318,15 @@ npm run build
 
 Crud 主要针对常见需求进行数据抽象编写而成，所以不一定非要使用在例如以表格为主的数据操作上，可以很大程度上减少代码编写量
 
-示例页面代码可以点[这里](https://github.com/rbackrock/vue3-scaffold/blob/main/src/views/example/crud/index.vue)查看，174 行代码完成表格数据的条件查询，表格数据添加，修改，删除。不但如此，该示例页面还展示了表格操作（`TableControl`）和 表格操作列（`TableRecordControl`） 组件的使用
+它本质上是封装维护了增删改查常用的一系列变量和逻辑操作，例如点击“新建”按钮，打开一个新增记录的模态框输入完数据点击保存按钮开始。首先，按钮开始 laoding 状态，然后请求后端保存数据，保存成功以后，保存按钮关闭 loading 状态，关闭模态框，之后查询表格数据等等，这样的行为几乎都是 Crud 中固定的操作，Crud 组件设计的初衷就是为了减少类似逻辑操作的代码编写，自行维护和管理。同时设计了一系列整个流程的钩子方法，在常规操作中有特殊操作也可以很轻松的插入到整个逻辑过程中
+
+因为 Vue3 组合式 API 的设计，得益于数据可以彻底从 UI 中彻底分离出来，不再耦合 UI 所以可以一个页面有多个 Crud 独立维护互不影响。我在 Vue2 的版本中也实现了类似功能，有很多缺点，其中最大的缺点就是一个 `.vue` 中只能有一个 Crud 进行维护，并且因为是通过 `mixins` 的方式插入进来，极大限制了功能
+
+示例页面代码可以点[这里](https://github.com/rbackrock/admin-project-prototype-based-vue3/blob/main/src/views/example/crud/index.vue)查看，179 行代码完成表格数据的条件查询，表格数据添加，修改，删除。不但如此，该示例页面还展示了表格操作（`TableControl`）和 表格操作列（`TableRecordControl`） 组件的使用
 
 得益于 Vue3 组合式 API 的设计，Crud 可以在一个 `.vue` 页面中使用多个 Crud
 
-Crud 只是对常见的业务数据进行抽象，使用以后，可以全部使用，可以部分使用，尽可能做到灵活
+Crud 只是对常见的业务数据进行抽象，使用以后，可以全部使用，可以部分使用
 
 ### Crud 布局组件
 
@@ -413,16 +413,6 @@ Crud 组合式函数使用的响应对象一共有两大类
 
   `crudReactive` Crud 定义的响应式对象
 
-+ `CRUD_HOOK_FUNCTION_SEARCH_PAGING` 用于自定义分页相关设置
-
-  类型：`Function`
-
-  参数：
-
-  `crudReactive` Crud 定义的响应式对象
-
-  `crudPagingReactive` Crud 定义的关于分页的响应式对象
-
 + `CRUD_HOOK_FUNCTION_SEARCH_RESPONSE` 使用此钩子函数意味着使用者完全接管查询逻辑，包括查询表单验证（如果有的话）
 
   类型：`Function`
@@ -502,6 +492,16 @@ Crud 组合式函数使用的响应对象一共有两大类
   类型：`Object`
 
   数据表单的效验规则模型，类型是一个普通对象，该对象请参考 [Form 表单验证](https://2x.antdv.com/components/form-cn#components-form-demo-validation)
+
++ `CRUD_INJECTION_SEARCH_PAGING_INIT`
+
+  类型：`Function`
+
+  参数：
+
+  `crudReactive` Crud 定义的响应式对象
+
+  `crudPagingReactive` 分页的响应式对象
 
 + `CRUD_HOOK_FUNCTION_SEARCH_ONE_RESPONSE_BEFORE` 查询单条数据真正请求之前的操作，使用此钩子函数
 
@@ -785,6 +785,14 @@ Crud 对外暴露出来的除了上述提到的 `crudDataPropertiesReactive` `cr
 + `CRUD_FUNCTION_SAVE` 保存表单数据的方法，可以让使用者直接调用
 
 + `CRUD_FUNCTION_DELETE` 删除数据的方法，可以让使用者直接调用
+
++ `CRUD_FUNCTION_QUERY_AFTER_CHANGE_PAGE` 常用于当前分页或者分页大小改变需要查询的时候，例如当前版本 antdv 的分页组件的 `@change` 实践中调用，可以让使用者直接调用，例如
+
+```js
+  function handleTableChange(paging) {
+    crud[crudConsts.CRUD_FUNCTION_QUERY_AFTER_CHANGE_PAGE](paging)
+  }
+```
 
 `useForm` 对象是 antdV 组件库提供的一种表单处理的方法，详见[这里](https://2x.antdv.com/components/form-cn#useForm)
 
