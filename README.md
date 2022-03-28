@@ -411,6 +411,12 @@ Crud 组合式函数使用的响应对象一共有两大类
 
   用于查询接口额外的查询条件，一般定义为查询接口接受两个参数，一个是查询表单的 model 另一个则是追加额外的查询条件，此属性用于追加额外的查询对象
 
++ `CRUD_INJECTION_SEARCH_READY_BEFORE_PROMISE`
+
+  类型：`Promise`
+
+  用于查询之前需要做的异步操作，例如获取所在部门数据成功之后，再进行查询
+
 + `CRUD_HOOK_FUNCTION_SEARCH_RESPONSE_BEFORE` 用于执行真正查询接口之前的钩子函数，在查询接口调用之前如果如果想做什么实用该钩子函数即可
 
   类型：`Function`
